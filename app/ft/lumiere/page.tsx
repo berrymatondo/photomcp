@@ -27,6 +27,8 @@ import {
 } from "@/components/ui/dialog";
 import Image from "next/image";
 import co from "../../../public/co.png";
+import chaire from "../../../public/chair.jpeg";
+import proj1 from "../../../public/proj1.jpeg";
 
 const notifications = [
   {
@@ -66,21 +68,26 @@ const boitier = [
 
 const arrets = [
   {
-    title: "Appuyer deux fois sur le bouton du boitier qui est allumé",
-    description: "Ceci devra éteindre tous les boutons du boitier",
+    title: "Appuyer sur le bouton du boitier qui est allumé",
+    description:
+      "Ceci devra éteindre tous les boutons du boitier ainsi que les projecteurs de l'auditorium",
+    image: chaire,
   },
   {
     title: "Eteindre les projecteurs de la chair (intérieur et extérieur)",
     description: "-",
+    image: chaire,
   },
   {
     title: "Eteindre les projecteurs du rail et du mur",
     description: "-",
+    image: proj1,
   },
   {
     title: "Eteindre les projecteurs du sol",
     description:
       "Ceci se fait manuellement derrière le projecteur au sol situé à droite de l'orateur",
+    image: proj1,
   },
 ];
 
@@ -170,19 +177,37 @@ const LumierePage = () => {
                 </AccordionTrigger>
                 <AccordionContent>
                   <div>
-                    {notifications.map((notification, index) => (
+                    {arrets.map((notification, index) => (
                       <div
                         key={index}
-                        className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
+                        className="grid grid-cols-[80px_1fr] gap-2 p-4"
                       >
-                        <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
-                        <div className="space-y-1">
-                          <p className="text-sm font-medium leading-none">
-                            {notification.title}
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            {notification.description}
-                          </p>
+                        {/*                         <div className="relative w-16 h-16 overflow-hidden">
+                          <Image
+                            alt="co"
+                            src={chaire}
+                            placeholder="blur"
+                            //  quality={100}
+                            fill
+                            //  sizes="100vw"
+                            className="object-cover z-10"
+                          />
+                        </div> */}
+                        <BIG img={notification.image} />
+                        <div
+                          key={index}
+                          className="mb-4 grid  items-start pd-2 last:mb-0 last:pb-0"
+                        >
+                          {/*                           <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
+                           */}{" "}
+                          <div className="space-y-1">
+                            <p className="text-sm font-medium leading-none">
+                              {notification.title}
+                            </p>
+                            <p className="text-sm text-muted-foreground">
+                              {notification.description}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -229,6 +254,53 @@ const CO = () => {
         {/*         <DialogFooter>
           <Button type="submit">Quitter</Button>
         </DialogFooter> */}
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+type BigProps = {
+  img: any;
+};
+const BIG = ({ img }: BigProps) => {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="empty">
+          <div className="relative w-12 h-12  overflow-hidden">
+            <Image
+              alt="co"
+              src={img}
+              //placeholder="blur"
+              //  quality={100}
+              fill
+              //  sizes="100vw"
+              className="object-cover z-10"
+            />
+          </div>
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[1200px] sm:max-h-[700px]">
+        <DialogHeader>
+          <DialogTitle>{"Configuration d'un culte ordinaire"}</DialogTitle>
+          {/*           <DialogDescription>
+              Make changes to your profile here. Click save when you're done.
+            </DialogDescription> */}
+        </DialogHeader>
+        <div className="grid gap-4 py-4 overflow-hidden">
+          <Image
+            alt="co"
+            src={chaire}
+            placeholder="blur"
+            //  quality={100}
+            //  fill
+            //  sizes="100vw"
+            className="object-cover z-10 rounded-lg"
+          />
+        </div>
+        {/*         <DialogFooter>
+            <Button type="submit">Quitter</Button>
+          </DialogFooter> */}
       </DialogContent>
     </Dialog>
   );
