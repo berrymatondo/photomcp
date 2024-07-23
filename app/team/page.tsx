@@ -67,7 +67,7 @@ const TeamPage = () => {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Membre</TableHead>
+            <TableHead className="">Membre</TableHead>
             <TableHead className="">Téléphone</TableHead>
             <TableHead className="text-right"></TableHead>
           </TableRow>
