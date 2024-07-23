@@ -1,5 +1,7 @@
+"use client";
 import { headers } from "next/headers";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 import { FiBookOpen } from "react-icons/fi";
 import { MdEvent, MdHome, MdPeople } from "react-icons/md";
@@ -32,12 +34,13 @@ const tabLinks = [
 ];
 
 const Footer = () => {
-  const headersList = headers();
-  const pathname = headersList.get("x-pathname");
+  /*   const headersList = headers();
+  const pathname = headersList.get("x-pathname"); */
+  const pathname = usePathname();
 
   const shortPath = pathname?.split("/")[1].split("/")[0];
 
-  console.log("shortPath", shortPath);
+  //console.log("shortPath", shortPath);
 
   return (
     <div className="bg-gray-200 sticky bottom-0 py-2 ">

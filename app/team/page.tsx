@@ -12,6 +12,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { MdEdit } from "react-icons/md";
+import MemberForm from "@/components/team/memberForm";
+import DeleteMember from "@/components/team/deleteMember";
 
 const team = [
   {
@@ -51,6 +53,16 @@ const TeamPage = () => {
     <GlobalLayout
       title="Equipe Photo"
       desc="Liste des membres actifs de l'équipe photo du MCP"
+      add={{
+        name: "Nouveau membre",
+        compo: (
+          <MemberForm
+            action="Nouveau Membre"
+            desc="Ajouter un nouveau membre dans l'équipe photo."
+            openDialog={false}
+          />
+        ),
+      }}
     >
       <Table>
         <TableHeader>
@@ -61,12 +73,23 @@ const TeamPage = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {team.map((invoice) => (
-            <TableRow key={invoice.id}>
-              <TableCell className="font-medium">{invoice.firstname}</TableCell>
-              <TableCell className="">{invoice.mobile}</TableCell>
-              <TableCell className="text-right">
-                <MdEdit />
+          {team.map((member) => (
+            <TableRow key={member.id}>
+              <TableCell className="font-medium">{member.firstname}</TableCell>
+              <TableCell className="">{member.mobile}</TableCell>
+              <TableCell className="text-right flex items-center gap-6">
+                <DeleteMember
+                  action="Editer Membre"
+                  desc="Editer un membre de l'équipe photo."
+                  openDialog={false}
+                  member={member}
+                />
+                <MemberForm
+                  action="Editer Membre"
+                  desc="Editer un membre de l'équipe photo."
+                  openDialog={false}
+                  type="M"
+                />
               </TableCell>
             </TableRow>
           ))}
