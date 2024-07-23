@@ -175,12 +175,12 @@ const LumierePage = () => {
                     {"Arrêt total"}
                   </p>
                 </AccordionTrigger>
-                <AccordionContent>
+                <AccordionContent className=" ml-0">
                   <div>
                     {arrets.map((notification, index) => (
                       <div
                         key={index}
-                        className="grid grid-cols-[80px_1fr] gap-2 p-4"
+                        className="grid grid-cols-[80px_1fr] gap-2 py-4"
                       >
                         {/*                         <div className="relative w-16 h-16 overflow-hidden">
                           <Image
@@ -263,11 +263,13 @@ type BigProps = {
   img: any;
 };
 const BIG = ({ img }: BigProps) => {
+  //console.log("img: ", img.src);
+
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="empty">
-          <div className="relative w-12 h-12  overflow-hidden">
+      <DialogTrigger asChild className="px-0">
+        <Button variant="empty" className="">
+          <div className="relative w-12 h-12  overflow-hidden ">
             <Image
               alt="co"
               src={img}
@@ -290,7 +292,7 @@ const BIG = ({ img }: BigProps) => {
         <div className="grid gap-4 py-4 overflow-hidden">
           <Image
             alt="co"
-            src={chaire}
+            src={img}
             placeholder="blur"
             //  quality={100}
             //  fill
