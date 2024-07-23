@@ -2,7 +2,7 @@ import { headers } from "next/headers";
 import Link from "next/link";
 import React from "react";
 import { FiBookOpen } from "react-icons/fi";
-import { MdBook, MdEvent, MdFileOpen, MdHome, MdPeople } from "react-icons/md";
+import { MdEvent, MdHome, MdPeople } from "react-icons/md";
 
 const tabLinks = [
   {
@@ -35,13 +35,12 @@ const Footer = () => {
   const headersList = headers();
   const pathname = headersList.get("x-pathname");
 
-  //console.log("PATHNAME", pathname);
-
   const shortPath = pathname?.split("/")[1].split("/")[0];
+
   console.log("shortPath", shortPath);
 
   return (
-    <div className="sticky bottom-0 py-2 ">
+    <div className="bg-gray-200 sticky bottom-0 py-2 ">
       <ul className="py-2 container flex items-center justify-between">
         {tabLinks.map((el) => (
           <Link

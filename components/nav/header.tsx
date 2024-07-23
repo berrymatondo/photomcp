@@ -4,7 +4,7 @@ import { MdCamera, MdGroup, MdLogin, MdLogout } from "react-icons/md";
 
 const Header = () => {
   return (
-    <div className="sticky top-0 left-0 bg-gray-200 flex justify-between items-center p-4">
+    <div className="sticky top-0  bg-gray-200 flex justify-between items-center p-4">
       <div className="flex items-center gap-2">
         <MdCamera size={30} className="text-sky-600" />
         <Link href="/home" className="font-medium">
