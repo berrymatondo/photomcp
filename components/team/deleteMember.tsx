@@ -32,7 +32,7 @@ const DeleteMember = ({
     <div>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <MdDelete className="text-red-600" size={25} />
+          <MdDelete className="text-red-600" size={20} />
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
@@ -40,11 +40,16 @@ const DeleteMember = ({
             <DialogDescription>{desc}</DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
-            <p>Supprimer le membre {member.firstname} ?</p>
+            <p className="text-center">
+              Supprimer le membre{" "}
+              <strong className="text-red-600">{member.firstname}</strong> ?
+            </p>
           </div>
-          <DialogFooter>
+          <DialogFooter className="flex  gap-4">
             <Button type="button">Annuler</Button>
-            <Button type="submit">Confirmer</Button>
+            <Button className="text-red-600" variant="outline" type="submit">
+              Confirmer
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

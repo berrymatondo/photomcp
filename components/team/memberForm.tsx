@@ -60,7 +60,12 @@ const MemberForm = ({ openDialog, action, desc, type }: MemberFormProps) => {
               />
             </div>
           </div>
-          <DialogFooter>
+          <DialogFooter className="flex gap-4">
+            {type == "M" && (
+              <Button type="button" variant="outline">
+                Annuler
+              </Button>
+            )}
             <Button type="submit">Enregistrer</Button>
           </DialogFooter>
         </DialogContent>

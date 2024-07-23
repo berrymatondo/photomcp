@@ -79,8 +79,8 @@ const TeamPage = () => {
               <TableCell className="">{member.mobile}</TableCell>
               <TableCell className="text-right flex items-center gap-6">
                 <DeleteMember
-                  action="Editer Membre"
-                  desc="Editer un membre de l'équipe photo."
+                  action="Supprimer Membre"
+                  desc="Supprimer un membre de l'équipe photo."
                   openDialog={false}
                   member={member}
                 />
