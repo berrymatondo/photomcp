@@ -1,13 +1,13 @@
 import Link from "next/link";
 import React from "react";
-import { MdCamera, MdGroup, MdLogin, MdLogout } from "react-icons/md";
+import { MdLinkedCamera, MdLogin, MdLogout } from "react-icons/md";
 
 const Header = () => {
   return (
     <div className="sticky top-0  bg-gray-200 flex justify-between items-center p-4">
       <div className="flex items-center gap-2">
-        <MdCamera size={30} className="text-sky-600" />
-        <Link href="/home" className="font-medium">
+        <MdLinkedCamera size={30} className="text-sky-600" />
+        <Link href="/" className="font-medium">
           Team Photo
         </Link>
       </div>
