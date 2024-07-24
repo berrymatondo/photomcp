@@ -27,6 +27,7 @@ const GlobalLayout = ({ title, desc, add, children }: GlobalLayoutProps) => {
           <CardDescription>{desc} </CardDescription>
         </CardHeader>
         <CardContent>
+          {add && add.bred}
           {add && add.compo}
           {children}
         </CardContent>

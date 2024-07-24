@@ -16,6 +16,15 @@ import MemberForm from "@/components/team/memberForm";
 import DeleteMember from "@/components/team/deleteMember";
 import prisma from "@/lib/prisma";
 
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+
 const team = [
   {
     id: 1,
@@ -107,6 +116,7 @@ const TeamPage = async ({
             openDialog={false}
           />
         ),
+        bred: <CustomBreadcrumb name="Equipe" />,
       }}
     >
       <Table>
@@ -149,3 +159,23 @@ const TeamPage = async ({
 };
 
 export default TeamPage;
+
+const CustomBreadcrumb = ({ name }: { name: string }) => {
+  return (
+    <Breadcrumb className="  mb-4">
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Accueil</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        {/*         <BreadcrumbItem>
+            <BreadcrumbLink href="/zones">Zones</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator /> */}
+        <BreadcrumbItem>
+          <BreadcrumbPage className="font-semibold">{name}</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  );
+};
