@@ -162,7 +162,7 @@ export default TeamPage;
 
 const CustomBreadcrumb = ({ name }: { name: string }) => {
   return (
-    <Breadcrumb className="  mb-4">
+    <Breadcrumb className=" mb-4">
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink href="/">Accueil</BreadcrumbLink>
