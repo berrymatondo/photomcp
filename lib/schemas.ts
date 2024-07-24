@@ -43,12 +43,12 @@ export const MemberSchema = z.object({
   lastname: z.string().min(1, {
     message: "Le nom est obligatoire",
   }),
-  email: z.string().min(1, {
+  email: z.string().email().min(1, {
     message: "L'adresse email est obligatoire",
   }),
   mobile: z.string().min(1, {
     message: "Le numéro de téléphone est obligatoire",
   }),
   comments: z.string().optional(),
-  status: z.string(),
+  status: z.string().optional(),
 });

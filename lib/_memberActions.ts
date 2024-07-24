@@ -46,7 +46,7 @@ export const createMember = async (data: Inputs) => {
 
 // update MEMBER
 export const updateMember = async (data: Inputs) => {
-  //console.log("registerUser", data);
+  //console.log("registerUser ", data);
 
   const result = MemberSchema.safeParse(data);
 
@@ -65,7 +65,7 @@ export const updateMember = async (data: Inputs) => {
           email: data.email,
           mobile: data.mobile,
           status: data.status as MemberStatuses,
-          comments: data.comments,
+          comments: data.comments ? data.comments : "",
         },
       });
       revalidatePath(`/team`);

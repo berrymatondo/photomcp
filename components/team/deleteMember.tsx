@@ -13,6 +13,7 @@ import {
 import { deleteMember } from "@/lib/_memberActions";
 import { useState } from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
+import { toast } from "sonner";
 
 type MemberFormProps = {
   openDialog: boolean;
@@ -62,7 +63,9 @@ const DeleteMember = ({
               action={() => {
                 "use serer";
                 deleteMember(member.id);
-
+                toast.success(`Le membre a été supprimé avec succès.`, {
+                  description: new Date().toISOString().split("T")[0],
+                });
                 setOpen(!open);
                 //window.location.reload();
               }}

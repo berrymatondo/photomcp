@@ -137,6 +137,7 @@ const TeamPage = async ({
                   desc="Editer un membre de l'équipe photo."
                   openDialog={false}
                   type="M"
+                  member={member}
                 />
               </TableCell>
             </TableRow>

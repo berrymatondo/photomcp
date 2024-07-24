@@ -31,13 +31,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { MemberSchema } from "@/lib/schemas";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { MdEdit } from "react-icons/md";
 
 import * as z from "zod";
 import { toast } from "sonner";
-import { createMember, updateMember } from "@/lib/_memberActions";
+import { createMember, getMember, updateMember } from "@/lib/_memberActions";
 import { MemberStatuses } from "@prisma/client";
 
 type MemberFormProps = {
@@ -58,25 +58,44 @@ const MemberForm = ({
   const [open, setOpen] = useState(openDialog);
 
   const [loading, setLoading] = useState(false);
+  const [readMember, setReadMember] = useState(member);
 
-  //console.log("usr: ", usr);
+  // console.log("usr:  ", member);
+  //console.log("readMember:  ", readMember);
 
   const form = useForm<z.infer<typeof MemberSchema>>({
     resolver: zodResolver(MemberSchema),
     defaultValues: {
-      id: member ? member.id : undefined,
-      firstname: member ? member.firstname : "",
-      lastname: member ? member.lastname : "",
-      email: member ? member.email : "",
-      mobile: member ? member.mobile : "",
-      status: member ? member.status : undefined,
+      id: member ? readMember.id : undefined,
+      firstname: member ? readMember.firstname : "",
+      lastname: member ? readMember.lastname : "",
+      email: member ? readMember.email : "",
+      mobile: member ? readMember.mobile : "",
+      status: member ? readMember.status : undefined,
     },
   });
 
+  useEffect(() => {
+    const fetchNewData = async (idd: any) => {
+      const resu = await getMember(idd);
+      const dat = resu?.data;
+      setReadMember(dat);
+
+      form.setValue("firstname", dat?.firstname as string);
+      form.setValue("lastname", dat?.lastname as string);
+      form.setValue("mobile", dat?.mobile as string);
+      form.setValue("email", dat?.email as string);
+      form.setValue("status", dat?.status as MemberStatuses);
+
+      //console.log("IDd  ", dat);
+    };
+    if (member) fetchNewData(member.id);
+  }, [form, member?.id, member, open]);
+
   const procesForm = async (values: z.infer<typeof MemberSchema>) => {
     setLoading(true);
-    console.log("Value: ", values);
-    console.log("usr: ", member);
+    //console.log("Value: ", values);
+    //console.log("usr: ", member);
 
     // const result = await registerUser(values);
     let res;
@@ -101,12 +120,13 @@ const MemberForm = ({
         description: new Date().toISOString().split("T")[0],
       });
     else
-      toast.success(`Le membre a été envoyé avec succès.`, {
+      toast.success(`Le membre a été créé avec succès.`, {
         description: new Date().toISOString().split("T")[0],
       });
 
     setLoading(false);
     form.reset();
+    setOpen(false);
     //router.push("/admin/countries");
   };
 
@@ -154,113 +174,119 @@ const MemberForm = ({
             >
               <div className="space-y-4">
                 <div className="flex flex-col justify-between gap-4">
-                  <FormField
-                    control={form.control}
-                    name="firstname"
-                    render={({ field }) => {
-                      return (
-                        <FormItem className="w-1/2">
-                          <FormLabel>{"Prénom du membre"}</FormLabel>
-                          <FormControl>
-                            <Input
-                              {...field}
-                              placeholder="Entrer le prénom du membre"
-                              type="text"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      );
-                    }}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="lastname"
-                    render={({ field }) => {
-                      return (
-                        <FormItem className="w-1/2">
-                          <FormLabel>{"Nom du membre"}</FormLabel>
-                          <FormControl>
-                            <Input
-                              {...field}
-                              placeholder="Entrer le nom du membre"
-                              type="text"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      );
-                    }}
-                  />
+                  <div className="flex gap-4 justify-between items-center">
+                    <FormField
+                      control={form.control}
+                      name="firstname"
+                      render={({ field }) => {
+                        return (
+                          <FormItem className="w-1/2">
+                            <FormLabel>{"Prénom"}</FormLabel>
+                            <FormControl>
+                              <Input
+                                {...field}
+                                placeholder="Entrer le prénom du membre"
+                                type="text"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        );
+                      }}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="lastname"
+                      render={({ field }) => {
+                        return (
+                          <FormItem className="w-1/2">
+                            <FormLabel>{"Nom"}</FormLabel>
+                            <FormControl>
+                              <Input
+                                {...field}
+                                placeholder="Entrer le nom du membre"
+                                type="text"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        );
+                      }}
+                    />
+                  </div>
+                  <div className="flex gap-4 justify-between items-center">
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => {
+                        return (
+                          <FormItem className="w-1/2">
+                            <FormLabel>{"Email"}</FormLabel>
+                            <FormControl>
+                              <Input
+                                {...field}
+                                placeholder="Entrer l'adresse mail email du membre"
+                                type="text"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        );
+                      }}
+                    />
 
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => {
-                      return (
-                        <FormItem className="w-1/2">
-                          <FormLabel>{"Email"}</FormLabel>
-                          <FormControl>
-                            <Input
-                              {...field}
-                              placeholder="Entrer l'adresse mail email du membre"
-                              type="text"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      );
-                    }}
-                  />
+                    <FormField
+                      control={form.control}
+                      name="mobile"
+                      render={({ field }) => {
+                        return (
+                          <FormItem className="w-1/2">
+                            <FormLabel>{"Téléphone"}</FormLabel>
+                            <FormControl>
+                              <Input
+                                {...field}
+                                placeholder="Entrer le téélphone du membre"
+                                type="text"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        );
+                      }}
+                    />
+                  </div>
+                  {member && (
+                    <FormField
+                      control={form.control}
+                      name="status"
+                      render={({ field }) => {
+                        return (
+                          <FormItem className="w-1/2">
+                            <FormLabel>Statut</FormLabel>
+                            <Select
+                              onValueChange={field.onChange}
+                              defaultValue={field.value}
+                            >
+                              <SelectTrigger id="framework">
+                                <SelectValue placeholder="Sélectionner un statut" />
+                              </SelectTrigger>
+                              <SelectContent position="popper">
+                                {Object.values(MemberStatuses)?.map(
+                                  (ur: any) => (
+                                    <SelectItem key={ur} value={ur}>
+                                      {ur}
+                                    </SelectItem>
+                                  )
+                                )}
+                              </SelectContent>
+                            </Select>
 
-                  <FormField
-                    control={form.control}
-                    name="mobile"
-                    render={({ field }) => {
-                      return (
-                        <FormItem className="w-1/2">
-                          <FormLabel>{"Téléphone du membre"}</FormLabel>
-                          <FormControl>
-                            <Input
-                              {...field}
-                              placeholder="Entrer le téélphone du membre"
-                              type="text"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      );
-                    }}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="status"
-                    render={({ field }) => {
-                      return (
-                        <FormItem className="w-1/2">
-                          <FormLabel>Statut</FormLabel>
-                          <Select
-                            onValueChange={field.onChange}
-                            defaultValue={field.value}
-                          >
-                            <SelectTrigger id="framework">
-                              <SelectValue placeholder="Sélectionner un statut" />
-                            </SelectTrigger>
-                            <SelectContent position="popper">
-                              {Object.values(MemberStatuses)?.map((ur: any) => (
-                                <SelectItem key={ur} value={ur}>
-                                  {ur}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-
-                          <FormMessage />
-                        </FormItem>
-                      );
-                    }}
-                  />
+                            <FormMessage />
+                          </FormItem>
+                        );
+                      }}
+                    />
+                  )}
                 </div>
               </div>
               <div className="flex gap-2">
