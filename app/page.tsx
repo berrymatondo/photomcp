@@ -35,10 +35,10 @@ export default function Home() {
           <MdLinkedCamera size={25} className="text-white mr-2" /> Team Photo
         </span>
       </div>
-      <div className=" font-medium flex flex-col text-center items-center justify-center container mt-10 text-lg">
-        <span className="bg-white text-sky-600 p-2 rounded-full">
+      <div className=" flex justify-end w-full absolute z-10 top-1/2 right-0">
+        <p className="rounded-l-full bg-white/30 w-1/2 text-white p-2  text-right">
           {"Espace dédié à la gestion du pôle photo du MCP"}
-        </span>
+        </p>
       </div>
       <div className="absolute z-10 top-3/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <ul className=" container flex items-center justify-between gap-4">

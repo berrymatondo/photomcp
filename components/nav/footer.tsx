@@ -5,13 +5,14 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { FiBookOpen } from "react-icons/fi";
 import { MdEvent, MdHome, MdPeople } from "react-icons/md";
+import { BiSolidDashboard } from "react-icons/bi";
 
 const tabLinks = [
   {
     id: 1,
-    link: "/home",
-    title: "Accueil",
-    logo: <MdHome size={35} />,
+    link: "/dashboard",
+    title: "Dashboard",
+    logo: <BiSolidDashboard size={35} />,
   },
   {
     id: 2,
