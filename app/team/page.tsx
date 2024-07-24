@@ -14,6 +14,7 @@ import {
 import { MdEdit } from "react-icons/md";
 import MemberForm from "@/components/team/memberForm";
 import DeleteMember from "@/components/team/deleteMember";
+import prisma from "@/lib/prisma";
 
 const team = [
   {
@@ -48,7 +49,51 @@ const team = [
   },
 ];
 
-const TeamPage = () => {
+const TeamPage = async ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) => {
+  const skip =
+    typeof searchParams.skip === "string" ? Number(searchParams.skip) : 0;
+  const take =
+    typeof searchParams.take === "string" ? Number(searchParams.take) : 10;
+
+  const search =
+    typeof searchParams.search === "string" ? searchParams.search : undefined;
+
+  // const usrCount = await prisma.member.count();
+
+  const members = await prisma.member.findMany({
+    take: take,
+    skip: skip,
+    /*     include: {
+      department: true,
+    }, */
+    /*     include: {
+      address: true,
+      zone: true,
+    }, */
+    where: {
+      lastname: { contains: search as string, mode: "insensitive" },
+    },
+    select: {
+      id: true,
+      firstname: true,
+      lastname: true,
+      email: true,
+      mobile: true,
+      comments: true,
+      status: true,
+      //users: true,
+      //  company: true,
+    },
+    orderBy: {
+      lastname: "asc",
+    },
+  });
+
+  //const session = await auth();
   return (
     <GlobalLayout
       title="Equipe Photo"
@@ -73,9 +118,15 @@ const TeamPage = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {team.map((member) => (
+          {members.map((member) => (
             <TableRow key={member.id}>
-              <TableCell className="font-medium">{member.firstname}</TableCell>
+              <TableCell>
+                <p>
+                  <span className="font-medium">{member.lastname} </span>
+                  {member.firstname}
+                </p>
+                <p>{member.email}</p>
+              </TableCell>
               <TableCell className="">{member.mobile}</TableCell>
               <TableCell className="text-right flex items-center gap-6">
                 <DeleteMember
