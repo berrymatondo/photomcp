@@ -57,7 +57,15 @@ const Footer = () => {
             }`}
           >
             {el.logo}
-            <p className="text-xs">{el.title}</p>
+            <p
+              className={`text-xs    ${
+                el.link.split("/")[1] == shortPath
+                  ? "text-sky-700 font-bold"
+                  : "text-black font-normal"
+              }`}
+            >
+              {el.title}
+            </p>
           </Link>
         ))}
       </ul>

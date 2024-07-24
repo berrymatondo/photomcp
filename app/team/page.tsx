@@ -11,7 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { MdEdit } from "react-icons/md";
+import { MdComment } from "react-icons/md";
 import MemberForm from "@/components/team/memberForm";
 import DeleteMember from "@/components/team/deleteMember";
 import prisma from "@/lib/prisma";
@@ -24,39 +24,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-
-const team = [
-  {
-    id: 1,
-    firstname: "Etia",
-    mobile: "+490 45 67 89",
-  },
-  {
-    id: 2,
-    firstname: "Etia",
-    mobile: "+490 45 67 89",
-  },
-  {
-    id: 3,
-    firstname: "Etia",
-    mobile: "+490 45 67 89",
-  },
-  {
-    id: 4,
-    firstname: "Etia",
-    mobile: "+490 45 67 89",
-  },
-  {
-    id: 5,
-    firstname: "Etia",
-    mobile: "+490 45 67 89",
-  },
-  {
-    id: 6,
-    firstname: "Etia",
-    mobile: "+490 45 67 89",
-  },
-];
 
 const TeamPage = async ({
   searchParams,
@@ -129,7 +96,10 @@ const TeamPage = async ({
         </TableHeader>
         <TableBody>
           {members.map((member) => (
-            <TableRow key={member.id}>
+            <TableRow
+              key={member.id}
+              className={member.status == "INACTIF" ? `text-gray-400` : ""}
+            >
               <TableCell>
                 <span className="font-medium">{member.lastname} </span>
                 {member.firstname}
@@ -149,6 +119,7 @@ const TeamPage = async ({
                   type="M"
                   member={member}
                 />
+                {member.comments && <MdComment />}
               </TableCell>
             </TableRow>
           ))}

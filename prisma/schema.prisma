@@ -52,9 +52,39 @@ model Member{
   mobile String
   status MemberStatuses @default(INACTIF)
   comments String?
+  Activites MembersOnActivites[]
+  
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("members")
+}
+
+
+
+model Activite{
+  id Int @id @default(autoincrement())
+  name String
+  date String
+  comments String?
+  members MembersOnActivites[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("activites")
+}
+
+
+model MembersOnActivites {
+  member       Member     @relation(fields: [memberId], references: [id])
+  memberId     Int // relation scalar field (used in the `@relation` attribute above)
+  activite   Activite @relation(fields: [activiteId], references: [id])
+  activiteId Int // relation scalar field (used in the `@relation` attribute above)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([memberId, activiteId])
 }

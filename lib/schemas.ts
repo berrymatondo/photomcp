@@ -52,3 +52,14 @@ export const MemberSchema = z.object({
   comments: z.string().optional(),
   status: z.string().optional(),
 });
+
+export const ActiviteSchema = z.object({
+  id: z.number().optional(),
+  name: z.string().min(1, {
+    message: "Le nom est obligatoire",
+  }),
+  date: z.string().min(1, {
+    message: "La date est obligatoire",
+  }),
+  comments: z.string().optional(),
+});

@@ -30,80 +30,78 @@ import {
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { MemberSchema } from "@/lib/schemas";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { MdEdit } from "react-icons/md";
 
 import * as z from "zod";
 import { toast } from "sonner";
-import { createMember, getMember, updateMember } from "@/lib/_memberActions";
-import { MemberStatuses } from "@prisma/client";
 import { Textarea } from "../ui/textarea";
+import { ActiviteSchema } from "@/lib/schemas";
+import {
+  createActivite,
+  getActivite,
+  updateActivite,
+} from "@/lib/_activiteActions";
 
-type MemberFormProps = {
+type ActiviteFormProps = {
   openDialog: boolean;
   action: string;
   desc: string;
   type?: string;
-  member?: any;
+  activite?: any;
 };
 
-const MemberForm = ({
+const ActiviteForm = ({
   openDialog,
   action,
   desc,
   type,
-  member,
-}: MemberFormProps) => {
+  activite,
+}: ActiviteFormProps) => {
   const [open, setOpen] = useState(openDialog);
 
   const [loading, setLoading] = useState(false);
-  const [readMember, setReadMember] = useState(member);
+  const [readActivite, setReadActivite] = useState(activite);
 
-  // console.log("usr:  ", member);
-  //console.log("readMember:  ", readMember);
+  // console.log("usr:  ", activite);
+  //console.log("readMember:  ", readActivite);
 
-  const form = useForm<z.infer<typeof MemberSchema>>({
-    resolver: zodResolver(MemberSchema),
+  const form = useForm<z.infer<typeof ActiviteSchema>>({
+    resolver: zodResolver(ActiviteSchema),
     defaultValues: {
-      id: member ? readMember.id : undefined,
-      firstname: member ? readMember.firstname : "",
-      lastname: member ? readMember.lastname : "",
-      email: member ? readMember.email : "",
-      mobile: member ? readMember.mobile : "",
-      comments: member ? readMember.comments : "",
-      status: member ? readMember.status : undefined,
+      id: activite ? readActivite.id : undefined,
+      name: activite ? readActivite.name : "",
+      date: activite ? readActivite.date.split("-").reverse().join("-") : "",
+      comments: activite ? readActivite.comments : "",
     },
   });
 
   useEffect(() => {
     const fetchNewData = async (idd: any) => {
-      const resu = await getMember(idd);
+      const resu = await getActivite(idd);
       const dat = resu?.data;
-      setReadMember(dat);
+      setReadActivite(dat);
 
-      form.setValue("firstname", dat?.firstname as string);
-      form.setValue("lastname", dat?.lastname as string);
-      form.setValue("mobile", dat?.mobile as string);
-      form.setValue("email", dat?.email as string);
+      form.setValue("name", dat?.name as string);
+      form.setValue("date", dat?.date.split("-").reverse().join("-") as string);
+
       form.setValue("comments", dat?.comments as string);
-      form.setValue("status", dat?.status as MemberStatuses);
 
       //console.log("IDd  ", dat);
     };
-    if (member) fetchNewData(member.id);
-  }, [form, member?.id, member, open]);
+    if (activite) fetchNewData(activite.id);
+  }, [form, activite?.id, activite, open]);
 
-  const procesForm = async (values: z.infer<typeof MemberSchema>) => {
+  const procesForm = async (values: z.infer<typeof ActiviteSchema>) => {
     setLoading(true);
     //console.log("Value: ", values);
     //console.log("usr: ", member);
 
     // const result = await registerUser(values);
     let res;
-    if (member) res = await updateMember(values);
-    else res = await createMember(values);
+    if (activite) res = await updateActivite(values);
+    else res = await createActivite(values);
 
     if (!res) {
       console.log("Une erreur est srvenue...");
@@ -118,12 +116,12 @@ const MemberForm = ({
       return;
     }
 
-    if (member)
-      toast.success(`Le membre a été mis à jour avec succès.`, {
+    if (activite)
+      toast.success(`L'activité a été mise à jour avec succès.`, {
         description: new Date().toISOString().split("T")[0],
       });
     else
-      toast.success(`Le membre a été créé avec succès.`, {
+      toast.success(`L'activité a été créée avec succès.`, {
         description: new Date().toISOString().split("T")[0],
       });
 
@@ -180,15 +178,15 @@ const MemberForm = ({
                   <div className="flex gap-4 justify-between items-center">
                     <FormField
                       control={form.control}
-                      name="firstname"
+                      name="name"
                       render={({ field }) => {
                         return (
                           <FormItem className="w-1/2">
-                            <FormLabel>{"Prénom"}</FormLabel>
+                            <FormLabel>{"Non de l'activité"}</FormLabel>
                             <FormControl>
                               <Input
                                 {...field}
-                                placeholder="Entrer le prénom du membre"
+                                placeholder="Entrer le nom"
                                 type="text"
                               />
                             </FormControl>
@@ -199,16 +197,16 @@ const MemberForm = ({
                     />
                     <FormField
                       control={form.control}
-                      name="lastname"
+                      name="date"
                       render={({ field }) => {
                         return (
                           <FormItem className="w-1/2">
-                            <FormLabel>{"Nom"}</FormLabel>
+                            <FormLabel>{"Date de l'activité"}</FormLabel>
                             <FormControl>
                               <Input
                                 {...field}
-                                placeholder="Entrer le nom du membre"
-                                type="text"
+                                placeholder="Entrer la date"
+                                type="date"
                               />
                             </FormControl>
                             <FormMessage />
@@ -217,19 +215,19 @@ const MemberForm = ({
                       }}
                     />
                   </div>
-                  <div className="flex gap-4 justify-between items-center">
+
+                  <>
                     <FormField
                       control={form.control}
-                      name="email"
+                      name="comments"
                       render={({ field }) => {
                         return (
-                          <FormItem className="w-1/2">
-                            <FormLabel>{"Email"}</FormLabel>
+                          <FormItem className="w-full">
+                            <FormLabel>{"Notes"}</FormLabel>
                             <FormControl>
-                              <Input
+                              <Textarea
                                 {...field}
-                                placeholder="Entrer l'adresse mail email du membre"
-                                type="text"
+                                placeholder="Entrer une note"
                               />
                             </FormControl>
                             <FormMessage />
@@ -237,80 +235,7 @@ const MemberForm = ({
                         );
                       }}
                     />
-
-                    <FormField
-                      control={form.control}
-                      name="mobile"
-                      render={({ field }) => {
-                        return (
-                          <FormItem className="w-1/2">
-                            <FormLabel>{"Téléphone"}</FormLabel>
-                            <FormControl>
-                              <Input
-                                {...field}
-                                placeholder="Entrer le téélphone du membre"
-                                type="text"
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        );
-                      }}
-                    />
-                  </div>
-                  {member && (
-                    <>
-                      <FormField
-                        control={form.control}
-                        name="status"
-                        render={({ field }) => {
-                          return (
-                            <FormItem className="w-1/2">
-                              <FormLabel>Statut</FormLabel>
-                              <Select
-                                onValueChange={field.onChange}
-                                defaultValue={field.value}
-                              >
-                                <SelectTrigger id="framework">
-                                  <SelectValue placeholder="Sélectionner un statut" />
-                                </SelectTrigger>
-                                <SelectContent position="popper">
-                                  {Object.values(MemberStatuses)?.map(
-                                    (ur: any) => (
-                                      <SelectItem key={ur} value={ur}>
-                                        {ur}
-                                      </SelectItem>
-                                    )
-                                  )}
-                                </SelectContent>
-                              </Select>
-
-                              <FormMessage />
-                            </FormItem>
-                          );
-                        }}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="comments"
-                        render={({ field }) => {
-                          return (
-                            <FormItem className="w-full">
-                              <FormLabel>{"Notes"}</FormLabel>
-                              <FormControl>
-                                <Textarea
-                                  {...field}
-                                  placeholder="Entrer une note"
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          );
-                        }}
-                      />
-                    </>
-                  )}
+                  </>
                 </div>
               </div>
               <div className="flex gap-2">
@@ -335,4 +260,4 @@ const MemberForm = ({
   );
 };
 
-export default MemberForm;
+export default ActiviteForm;
