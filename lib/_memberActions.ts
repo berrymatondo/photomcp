@@ -45,7 +45,7 @@ export const createMember = async (data: Inputs) => {
 };
 
 // update MEMBER
-export const updateGO = async (data: Inputs) => {
+export const updateMember = async (data: Inputs) => {
   //console.log("registerUser", data);
 
   const result = MemberSchema.safeParse(data);
