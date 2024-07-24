@@ -121,11 +121,8 @@ const TeamPage = async ({
           {members.map((member) => (
             <TableRow key={member.id}>
               <TableCell>
-                <p>
-                  <span className="font-medium">{member.lastname} </span>
-                  {member.firstname}
-                </p>
-                <p>{member.email}</p>
+                <span className="font-medium">{member.lastname} </span>
+                {member.firstname}
               </TableCell>
               <TableCell className="">{member.mobile}</TableCell>
               <TableCell className="text-right flex items-center gap-6">
