@@ -24,6 +24,7 @@ type ActiviteFormProps = {
   desc?: string;
   activite?: any;
   members: any;
+  moa: any;
 };
 
 const ServiceTeam = ({
@@ -31,19 +32,23 @@ const ServiceTeam = ({
   activite,
   action,
   desc,
+  moa,
   members,
 }: ActiviteFormProps) => {
   const [open, setOpen] = useState(openDialog);
+  // console.log("LOGGG ", activite?.members);
+
   return (
     <div>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           {/* <MdPeople className="text-teal-600" size={25} /> */}
           <div>
-            <p>Veronica</p>
-            <p>Etia</p>
-            <p>Genial</p>
-            <p>Daniel</p>
+            {activite?.members?.map((el: any) => (
+              <div key={el.id} className="flex items-center p-0 ">
+                <p className="text-xs">{el.member.firstname}</p>
+              </div>
+            ))}
           </div>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
@@ -61,7 +66,7 @@ const ServiceTeam = ({
               {"Membres en service"}
             </p>
             <ScrollArea className=" h-72 text-md w-full flex  rounded-md border">
-              {members.map((member: Member) => (
+              {/*               {members.map((member: Member) => (
                 <div
                   key={member.id}
                   className=" border-b flex items-center space-x-2 m-2 p-2 "
@@ -72,6 +77,20 @@ const ServiceTeam = ({
                     className="text-lg font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   >
                     {member.firstname}
+                  </label>
+                </div>
+              ))} */}
+              {activite?.members?.map((el: any) => (
+                <div
+                  key={el.id}
+                  className=" border-b flex items-center space-x-2 m-2 p-2 "
+                >
+                  <Checkbox id="terms" />
+                  <label
+                    htmlFor="terms"
+                    className="text-lg font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    {el.member.firstname}
                   </label>
                 </div>
               ))}

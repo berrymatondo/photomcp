@@ -25,6 +25,7 @@ import prisma from "@/lib/prisma";
 import DeleteActivite from "@/components/activites/deleteActivite";
 import { MdComment } from "react-icons/md";
 import ServiceTeam from "@/components/activites/serviceTeam";
+import { log } from "console";
 
 const ActivitesPage = async ({
   searchParams,
@@ -45,6 +46,15 @@ const ActivitesPage = async ({
     name: { contains: search as string, mode: "insensitive" },
   }, */
   });
+
+  const moa = await prisma.membersOnActivites.findMany({
+    /*   where: {
+    name: { contains: search as string, mode: "insensitive" },
+  }, */
+  });
+
+  console.log("moa", moa);
+
   const activites = await prisma.activite.findMany({
     take: take,
     skip: skip,
@@ -64,6 +74,11 @@ const ActivitesPage = async ({
       date: true,
 
       comments: true,
+      members: {
+        include: {
+          member: true,
+        },
+      },
       //users: true,
       //  company: true,
     },
@@ -71,6 +86,9 @@ const ActivitesPage = async ({
       date: "asc",
     },
   });
+
+  // console.log("activity", activites);
+
   return (
     <GlobalLayout
       title="Activités de l'église"
@@ -118,6 +136,7 @@ const ActivitesPage = async ({
                     activite={activite}
                     desc="dododo"
                     members={members}
+                    moa={moa}
                   />
                 </TableCell>
                 <TableCell className="text-right flex items-center gap-6">
