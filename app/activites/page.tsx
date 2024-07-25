@@ -121,8 +121,7 @@ const ActivitesPage = async ({
                     type="M"
                     activite={activite}
                   />
-                  {/*                 {activite.comments && <MdComment />}
-                   */}{" "}
+                  {activite.comments && <MdComment />}
                 </TableCell>
               </TableRow>
             ))}

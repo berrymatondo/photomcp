@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import vero from "../public/team/gracep.png";
+import vero from "../public/roro.png";
 
 import { MdEvent, MdHome, MdLinkedCamera, MdPeople } from "react-icons/md";
 
@@ -29,11 +29,17 @@ const tabLinks = [
 export default function Home() {
   return (
     <div className=" bg-sky-950 overflow-hidden relative rounded-lg m-1">
-      <div className="text-white mt-8 flex">
+      <div className="text-white mt-8 flex flex-col">
         {/*         <span className="flex bg-sky-600 p-2 font-medium text-lg rounded-r-full">
           <MdLinkedCamera size={25} className="text-white mr-2" /> Team Photo
         </span> */}
-        <MdLinkedCamera size={200} className="text-white/30 ml-8" />
+        <MdLinkedCamera
+          size={200}
+          className="text-white/30 ml-8 text-sky-400"
+        />
+        {/*         <p className="text-xs text-center bg-sky-600 m-1 p-1 rounded-full">
+          Ministère de la Communication et de la production
+        </p> */}
       </div>
 
       <div className=" flex justify-end w-full absolute z-10 top-1/2 right-0">
@@ -41,7 +47,7 @@ export default function Home() {
           {"Espace dédié à la gestion du pôle photo du MCP"}
         </p>
       </div>
-      <div className="absolute z-10 top-3/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      {/*       <div className="absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <ul className=" container flex items-center justify-between gap-4">
           {tabLinks.map((el) => (
             <Link
@@ -54,14 +60,14 @@ export default function Home() {
             </Link>
           ))}
         </ul>
-      </div>
+      </div> */}
       <Image
         alt="co"
         src={vero}
         placeholder="blur"
         //  quality={100}
-        //  fill
-        //  sizes="100vw"
+        //fill
+        //sizes="100vw"
         className="object-cover z-5 rounded-lg absolute bottom-0"
       />
     </div>
