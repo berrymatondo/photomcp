@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import vero from "../public/team/gracep.png";
 
-import { FiBookOpen } from "react-icons/fi";
 import { MdEvent, MdHome, MdLinkedCamera, MdPeople } from "react-icons/md";
 
 const tabLinks = [
@@ -29,12 +28,14 @@ const tabLinks = [
 
 export default function Home() {
   return (
-    <div className="bg-sky-950 overflow-hidden relative rounded-lg m-1">
+    <div className=" bg-sky-950 overflow-hidden relative rounded-lg m-1">
       <div className="text-white mt-8 flex">
-        <span className="flex bg-sky-600 p-2 font-medium text-lg rounded-r-full">
+        {/*         <span className="flex bg-sky-600 p-2 font-medium text-lg rounded-r-full">
           <MdLinkedCamera size={25} className="text-white mr-2" /> Team Photo
-        </span>
+        </span> */}
+        <MdLinkedCamera size={200} className="text-white/30 ml-8" />
       </div>
+
       <div className=" flex justify-end w-full absolute z-10 top-1/2 right-0">
         <p className="rounded-l-full bg-white/30 w-1/2 text-white p-2  text-right">
           {"Espace dédié à la gestion du pôle photo du MCP"}
@@ -53,8 +54,6 @@ export default function Home() {
             </Link>
           ))}
         </ul>
-        {/*       <p className="text-xs text-center"> &copy; Berry MATONDO</p>
-         */}{" "}
       </div>
       <Image
         alt="co"

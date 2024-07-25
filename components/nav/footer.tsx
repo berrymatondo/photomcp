@@ -44,7 +44,7 @@ const Footer = () => {
   //console.log("shortPath", shortPath);
 
   return (
-    <div className="bg-gray-200 sticky bottom-0 py-2 ">
+    <div className="m-2 rounded-lg bg-sky-100 sticky bottom-0  ">
       <ul className="py-2 container flex items-center justify-between">
         {tabLinks.map((el) => (
           <Link

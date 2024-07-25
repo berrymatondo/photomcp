@@ -140,7 +140,7 @@ const MemberForm = ({
           {type == "M" ? (
             <MdEdit className="text-sky-600" size={20} />
           ) : (
-            <Button className="w-full">{action}</Button>
+            <Button className="w-full bg-sky-600">{action}</Button>
           )}
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">

@@ -21,10 +21,12 @@ export default function RootLayout({
     <html lang="en">
       <body
         suppressHydrationWarning={true}
-        className="bg-gray-100 min-h-[100dvh] grid grid-rows-[auto_1fr_auto]"
+        /*         className="bg-gray-100 min-h-[100dvh] grid grid-rows-[1fr_auto]"
+         */ className=" min-h-[100dvh] flex flex-col"
       >
         <Header />
-        {children}
+
+        <div className="flex-1 grid">{children}</div>
         <Footer />
         <Toaster richColors />
       </body>
