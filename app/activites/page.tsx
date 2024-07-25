@@ -24,6 +24,7 @@ import ActiviteForm from "@/components/activites/activiteForm";
 import prisma from "@/lib/prisma";
 import DeleteActivite from "@/components/activites/deleteActivite";
 import { MdComment } from "react-icons/md";
+import ServiceTeam from "@/components/activites/serviceTeam";
 
 const ActivitesPage = async ({
   searchParams,
@@ -39,7 +40,11 @@ const ActivitesPage = async ({
     typeof searchParams.search === "string" ? searchParams.search : undefined;
 
   // const usrCount = await prisma.member.count();
-
+  const members = await prisma.member.findMany({
+    /*   where: {
+    name: { contains: search as string, mode: "insensitive" },
+  }, */
+  });
   const activites = await prisma.activite.findMany({
     take: take,
     skip: skip,
@@ -86,7 +91,7 @@ const ActivitesPage = async ({
         <TableHeader>
           <TableRow>
             <TableHead className="">Activité</TableHead>
-            <TableHead className="">Notes</TableHead>
+            <TableHead className="">En service</TableHead>
             <TableHead className="text-right"></TableHead>
           </TableRow>
         </TableHeader>
@@ -106,7 +111,15 @@ const ActivitesPage = async ({
                   <p className="text-black font-medium">{activite.date} </p>
                   <p className="">{activite.name} </p>
                 </TableCell>
-                <TableCell className="">{activite.comments}</TableCell>
+                <TableCell className=" ">
+                  <ServiceTeam
+                    openDialog={false}
+                    action="toto"
+                    activite={activite}
+                    desc="dododo"
+                    members={members}
+                  />
+                </TableCell>
                 <TableCell className="text-right flex items-center gap-6">
                   <DeleteActivite
                     action="Supprimer activité"
