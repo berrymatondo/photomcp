@@ -35,8 +35,58 @@ const ServiceTeam = ({
   moa,
   members,
 }: ActiviteFormProps) => {
+  console.log("activite", activite.id);
+  console.log("members", members);
+  //console.log("moa", moa);
+
+  const totor = [];
+  for (let i = 0; i < members.length; i++) {
+    let found = false;
+    for (let j = 0; j < activite?.members[j]?.length || found; j++) {
+      if (members[i].id == members[j].member.id) found = true;
+    }
+
+    if (!found) totor.push(members[i]);
+  }
+
+  console.log("totor", totor);
+
   const [open, setOpen] = useState(openDialog);
-  // console.log("LOGGG ", activite?.members);
+  const [global, setGlobal] = useState(members);
+  const [serviceTeam, setServiceTeam] = useState<any>([]);
+  console.log("LOGGGGGGGGGGGGGGGGGGG", global);
+
+  let tempo = [...activite.members];
+  let tempo1 = [...members];
+  let tempo2 = [];
+  for (let i = 0; i < members.length; i++) {
+    tempo2.push({
+      id: members[i].id,
+      firstname: members[i].firstname,
+      serv: false,
+    });
+    for (let j = 0; j < tempo.length; j++) {
+      if (tempo2[i].id === tempo[j].member.id) tempo2[i].serv = true;
+    }
+  }
+
+  // setServiceTeam(tempo2);
+
+  // for(let i = 0; i < members.length; i++) {}
+
+  const save = async (fo: FormData) => {
+    // "use server";
+    console.log("CEci est un test", fo);
+    console.log("CEci est un test", fo.get("toto"));
+  };
+
+  const updateGlobal = (id: any) => {
+    const clonedData = [...global];
+    setGlobal(
+      clonedData.map((d) => (d.id == id ? { ...d, serv: !d.serv } : d))
+    );
+    console.log("NEW GLOBAL: ", global);
+  };
 
   return (
     <div>
@@ -80,12 +130,14 @@ const ServiceTeam = ({
                   </label>
                 </div>
               ))} */}
+
               {activite?.members?.map((el: any) => (
                 <div
                   key={el.id}
                   className=" border-b flex items-center space-x-2 m-2 p-2 "
                 >
-                  <Checkbox id="terms" />
+                  {/*                   <Checkbox id="terms" />
+                   */}{" "}
                   <label
                     htmlFor="terms"
                     className="text-lg font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -94,6 +146,47 @@ const ServiceTeam = ({
                   </label>
                 </div>
               ))}
+              <p>-------------------</p>
+              <form
+                action={(f: FormData) => {
+                  "use serer";
+                  console.log("DATA", f.get("val"));
+                  console.log("GLOBAL", global);
+
+                  /*                   toast.success(`L'activité a été supprimée avec succès.`, {
+                    description: new Date().toISOString().split("T")[0],
+                  }); */
+                  setOpen(!open);
+                  //window.location.reload();
+                }}
+              >
+                {global
+                  ?.filter(
+                    (o: any) =>
+                      !activite?.members.some((i: any) => i.member.id === o.id)
+                  )
+                  .map((el: any) => (
+                    <div
+                      key={el.id}
+                      className=" border-b flex items-center space-x-2 m-2 p-2 "
+                    >
+                      <Checkbox
+                        name="val"
+                        id="terms"
+                        onClick={() => updateGlobal(el.id)}
+                      />
+                      <label
+                        htmlFor="terms"
+                        className="text-lg font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        {el.firstname}
+                      </label>
+                    </div>
+                  ))}
+                <Button type="submit" className="w-full my-2">
+                  Mettre à jour
+                </Button>
+              </form>
             </ScrollArea>
           </div>
           <DialogFooter className="flex  gap-4">
@@ -107,18 +200,8 @@ const ServiceTeam = ({
               >
                 {"Annuler"}
               </Button>
-              <form
-                className="flex"
-                action={() => {
-                  "use serer";
-                  deleteActivite(activite.id);
-                  toast.success(`L'activité a été supprimée avec succès.`, {
-                    description: new Date().toISOString().split("T")[0],
-                  });
-                  setOpen(!open);
-                  //window.location.reload();
-                }}
-              >
+              <form className="flex" action={save}>
+                <input name="toto" type="checkbox" />
                 <Button className="" type="submit">
                   Enregistrer
                 </Button>

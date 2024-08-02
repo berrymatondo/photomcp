@@ -109,7 +109,10 @@ export const getActivite = async (activiteId: number) => {
   try {
     const activite = await prisma.activite.findUnique({
       where: {
-        id: activiteId,
+        id: +activiteId,
+      },
+      include: {
+        members: true,
       },
     });
 

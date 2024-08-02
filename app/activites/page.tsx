@@ -26,6 +26,8 @@ import DeleteActivite from "@/components/activites/deleteActivite";
 import { MdComment } from "react-icons/md";
 import ServiceTeam from "@/components/activites/serviceTeam";
 import { log } from "console";
+import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 
 const ActivitesPage = async ({
   searchParams,
@@ -47,14 +49,25 @@ const ActivitesPage = async ({
   }, */
   });
 
+  let updMembers = [];
+  for (let i = 0; i < members.length; i++) {
+    updMembers.push({ ...members[i], serv: false });
+  }
+
+  //console.log("updMembers", updMembers);
+
   const moa = await prisma.membersOnActivites.findMany({
     /*   where: {
     name: { contains: search as string, mode: "insensitive" },
   }, */
   });
 
-  console.log("moa", moa);
+  /*   console.log("moa", moa);
 
+  let upd = updMembers.filter((o: any) => !moa.some((i: any) => i.id == o.id));
+
+  console.log("upd", upd);
+ */
   const activites = await prisma.activite.findMany({
     take: take,
     skip: skip,
@@ -129,15 +142,28 @@ const ActivitesPage = async ({
                   <p className="text-black font-medium">{activite.date} </p>
                   <p className="">{activite.name} </p>
                 </TableCell>
-                <TableCell className=" ">
-                  <ServiceTeam
+                <TableCell className="text-blue-800">
+                  <Link href={`/activites/${activite.id}/equipe`}>
+                    {activite?.members.length > 0 ? (
+                      activite?.members?.map((el: any) => (
+                        <div key={el.id} className="flex items-center p-0 ">
+                          <p className="text-xs">{el.member.firstname}</p>
+                        </div>
+                      ))
+                    ) : (
+                      <Badge className="block italic bg-gray-400">
+                        A Planifier
+                      </Badge>
+                    )}
+                  </Link>
+                  {/*                   <ServiceTeam
                     openDialog={false}
                     action="toto"
                     activite={activite}
                     desc="dododo"
-                    members={members}
+                    members={updMembers}
                     moa={moa}
-                  />
+                  /> */}
                 </TableCell>
                 <TableCell className="text-right flex items-center gap-6">
                   <DeleteActivite
