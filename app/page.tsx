@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import vero from "../public/roro.png";
+import vero from "../public/ggbb.png";
 
 import { MdEvent, MdHome, MdLinkedCamera, MdPeople } from "react-icons/md";
 
@@ -43,8 +43,9 @@ export default function Home() {
       </div>
 
       <div className=" flex justify-end w-full absolute z-10 top-1/2 right-0">
-        <p className="rounded-l-full bg-white/30 w-1/2 text-white p-2  text-right">
-          {"Espace dédié à la gestion du pôle photo du MCP"}
+        <p className="text-yellow-400 rounded-l-full bg-white/30 w-1/2  p-2  text-right">
+          <span>{"Espace équipe photo"}</span>
+          <span className="block text-sky-500 font-semibold">{"MCP"}</span>
         </p>
       </div>
       {/*       <div className="absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -64,11 +65,12 @@ export default function Home() {
       <Image
         alt="co"
         src={vero}
-        placeholder="blur"
+        //placeholder="blur"
+        fill
         //  quality={100}
         //fill
         //sizes="100vw"
-        className="object-cover z-5 rounded-lg absolute bottom-0"
+        className="object-cover z-5 "
       />
     </div>
   );
