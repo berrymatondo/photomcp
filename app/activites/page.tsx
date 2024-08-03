@@ -100,7 +100,11 @@ const ActivitesPage = async ({
     },
   });
 
-  // console.log("activity", activites);
+  console.log("activity", activites);
+  console.log(
+    "date",
+    +new Date().toISOString().substring(0, 10).replace(/-/g, "")
+  );
 
   return (
     <GlobalLayout
@@ -128,10 +132,20 @@ const ActivitesPage = async ({
         </TableHeader>
         <TableBody>
           {activites
+            .filter(
+              (d: any) =>
+                +new Date().toISOString().substring(0, 10).replace(/-/g, "") <=
+                +d.date
+                  .split("-")
+                  .reverse()
+                  .join("-")
+                  .substring(0, 10)
+                  .replace(/-/g, "")
+            )
             .sort(
               (a: any, b: any) =>
-                Date.parse(b.date.split("-").reverse().join("-")) -
-                Date.parse(a.date.split("-").reverse().join("-"))
+                Date.parse(a.date.split("-").reverse().join("-")) -
+                Date.parse(b.date.split("-").reverse().join("-"))
             )
             .map((activite) => (
               <TableRow

@@ -11,6 +11,7 @@ import {
 import {
   Bar,
   BarChart,
+  CartesianGrid,
   Label,
   LabelList,
   Rectangle,
@@ -19,7 +20,36 @@ import {
   YAxis,
 } from "recharts";
 import { Separator } from "./ui/separator";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./ui/chart";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "./ui/chart";
+import { TrendingUp } from "lucide-react";
+
+const chartConfig = {
+  desktop: {
+    label: "Desktop",
+    color: "hsl(var(--chart-1))",
+  },
+  mobile: {
+    label: "Mobile",
+    color: "hsl(var(--chart-2))",
+  },
+  label: {
+    color: "hsl(var(--background))",
+  },
+} satisfies ChartConfig;
+
+const chartData = [
+  { month: "January", desktop: 186, mobile: 80 },
+  { month: "February", desktop: 305, mobile: 200 },
+  { month: "March", desktop: 237, mobile: 120 },
+  { month: "April", desktop: 73, mobile: 190 },
+  { month: "May", desktop: 209, mobile: 130 },
+  { month: "June", desktop: 214, mobile: 140 },
+];
 
 type DashboardProps = {
   members: any;
@@ -35,8 +65,11 @@ const Dashboard = ({
   activites,
   actByMonth,
 }: DashboardProps) => {
+  console.log("actByMonth:", actByMonth);
+
   return (
     <div className="flex gap-2 max-md:flex-col">
+      test
       <Card className="max-w-xs" x-chunk="charts-01-chunk-4">
         <CardContent className="flex gap-4 p-4 pb-2">
           <ChartContainer
@@ -147,8 +180,7 @@ const Dashboard = ({
           </div>
         </CardFooter>
       </Card>
-
-      <Card className="lg:max-w-md" x-chunk="charts-01-chunk-0">
+      {/*       <Card className="lg:max-w-md" x-chunk="charts-01-chunk-0">
         <CardHeader className="space-y-0 pb-2">
           <CardDescription>Total des activités </CardDescription>
           <CardTitle className="text-4xl tabular-nums">
@@ -193,7 +225,7 @@ const Dashboard = ({
                   });
                 }}
               />
-              <ChartTooltip
+                         <ChartTooltip
                 defaultIndex={2}
                 content={
                   <ChartTooltipContent
@@ -208,7 +240,8 @@ const Dashboard = ({
                   />
                 }
                 cursor={false}
-              />
+              /> 
+
               <ReferenceLine
                 y={1200}
                 stroke="hsl(var(--muted-foreground))"
@@ -233,16 +266,47 @@ const Dashboard = ({
             </BarChart>
           </ChartContainer>
         </CardContent>
-        {/*         <CardFooter className="flex-col items-start gap-1">
-          <CardDescription>
-            Over the past 7 days, you have walked{" "}
-            <span className="font-medium text-foreground">53,305</span> steps.
-          </CardDescription>
-          <CardDescription>
-            You need <span className="font-medium text-foreground">12,584</span>{" "}
-            more steps to reach your goal.
-          </CardDescription>
-        </CardFooter> */}
+      </Card> */}
+      <Card>
+        <CardHeader>
+          <CardDescription>January - Décembre 2024</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <ChartContainer config={chartConfig}>
+            <BarChart
+              accessibilityLayer
+              data={actByMonth}
+              margin={{
+                top: 20,
+              }}
+            >
+              <CartesianGrid vertical={false} />
+              <XAxis
+                dataKey="date"
+                tickLine={false}
+                tickMargin={10}
+                axisLine={false}
+                tickFormatter={(value) => {
+                  return new Date(value).toLocaleDateString("fr-FR", {
+                    month: "short",
+                  });
+                }}
+              />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent hideLabel />}
+              />
+              <Bar dataKey="total" fill="var(--color-desktop)" radius={8}>
+                <LabelList
+                  position="top"
+                  offset={12}
+                  className="fill-foreground"
+                  fontSize={12}
+                />
+              </Bar>
+            </BarChart>
+          </ChartContainer>
+        </CardContent>
       </Card>
     </div>
   );
