@@ -151,9 +151,7 @@ const ActivitesPage = async ({
                         </div>
                       ))
                     ) : (
-                      <Badge className="block italic bg-gray-400">
-                        A Planifier
-                      </Badge>
+                      <span className="block italic">???</span>
                     )}
                   </Link>
                   {/*                   <ServiceTeam

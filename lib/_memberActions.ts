@@ -133,7 +133,7 @@ export const deleteMember = async (memberId: number) => {
 
   if (check.status == "KO") return check;
 
-  console.log("ID: " + memberId);
+  //console.log("ID: " + memberId);
 
   try {
     /*     const member = await prisma.member.delete({
@@ -148,6 +148,7 @@ export const deleteMember = async (memberId: number) => {
       },
       data: {
         staann: "D",
+        status: "RETIRE",
       },
     });
 

@@ -102,7 +102,13 @@ const EquipePage = () => {
             />
             <label
               htmlFor="terms"
-              className="text-lg font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              className={`text-lg font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${
+                member.staann == "D"
+                  ? "text-red-600"
+                  : member.status == "INACTIF"
+                  ? "text-gray-400"
+                  : ""
+              }`}
             >
               {member.firstname}
             </label>

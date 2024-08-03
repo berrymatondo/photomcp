@@ -21,6 +21,7 @@ enum UserStatuses {
 enum MemberStatuses {
  ACTIF
  INACTIF
+ RETIRE
 }
 
 enum UserRoles {

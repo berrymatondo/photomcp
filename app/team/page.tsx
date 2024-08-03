@@ -62,11 +62,12 @@ const TeamPage = async ({
       mobile: true,
       comments: true,
       status: true,
+      staann: true,
       //users: true,
       //  company: true,
     },
     orderBy: {
-      lastname: "asc",
+      status: "asc",
     },
   });
 
@@ -100,7 +101,7 @@ const TeamPage = async ({
             <TableRow
               key={member.id}
               className={
-                member.staann == "D"
+                member.status == "RETIRE"
                   ? "text-red-600"
                   : member.status == "INACTIF"
                   ? `text-gray-400`

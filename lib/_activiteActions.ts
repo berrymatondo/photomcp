@@ -76,7 +76,12 @@ export const updateActivite = async (data: Inputs) => {
 // Get all activites
 export const getAllActivites = async () => {
   try {
-    const activites = await prisma.activite.findMany();
+    const activites = await prisma.activite.findMany({
+      include: {
+        members: true,
+        _count: true,
+      },
+    });
 
     revalidatePath("/activites");
 
