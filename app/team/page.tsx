@@ -24,6 +24,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Member } from "@prisma/client";
 
 const TeamPage = async ({
   searchParams,
@@ -95,10 +96,16 @@ const TeamPage = async ({
           </TableRow>
         </TableHeader>
         <TableBody>
-          {members.map((member) => (
+          {members.map((member: any) => (
             <TableRow
               key={member.id}
-              className={member.status == "INACTIF" ? `text-gray-400` : ""}
+              className={
+                member.staann == "D"
+                  ? "text-red-600"
+                  : member.status == "INACTIF"
+                  ? `text-gray-400`
+                  : ""
+              }
             >
               <TableCell>
                 <span className="font-medium">{member.lastname} </span>

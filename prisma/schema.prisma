@@ -51,6 +51,7 @@ model Member{
   email String @unique
   mobile String
   status MemberStatuses @default(INACTIF)
+  staann String? 
   comments String?
   Activites MembersOnActivites[]
   
