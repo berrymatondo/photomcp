@@ -28,7 +28,7 @@ export const createActivite = async (data: Inputs) => {
           comments: data.comments,
         },
       });
-      revalidatePath(`/activites`);
+      revalidatePath("/activites");
 
       return { success: true, data: activite };
     } catch (error) {
@@ -61,7 +61,7 @@ export const updateActivite = async (data: Inputs) => {
           comments: data.comments ? data.comments : "",
         },
       });
-      revalidatePath(`/activite`);
+      revalidatePath("/activites");
       return { success: true, data: activite };
     } catch (error) {
       return { success: false, error };

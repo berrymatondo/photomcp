@@ -69,8 +69,8 @@ const ActivitesPage = async ({
   console.log("upd", upd);
  */
   const activites = await prisma.activite.findMany({
-    take: take,
-    skip: skip,
+    // take: take,
+    // skip: skip,
     /*     include: {
         department: true,
       }, */

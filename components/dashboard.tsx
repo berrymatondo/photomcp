@@ -69,7 +69,6 @@ const Dashboard = ({
 
   return (
     <div className="flex gap-2 max-md:flex-col">
-      test
       <Card className="max-w-xs" x-chunk="charts-01-chunk-4">
         <CardContent className="flex gap-4 p-4 pb-2">
           <ChartContainer
@@ -180,98 +179,12 @@ const Dashboard = ({
           </div>
         </CardFooter>
       </Card>
-      {/*       <Card className="lg:max-w-md" x-chunk="charts-01-chunk-0">
-        <CardHeader className="space-y-0 pb-2">
-          <CardDescription>Total des activités </CardDescription>
-          <CardTitle className="text-4xl tabular-nums">
-            {activites?.length}{" "}
-            <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
-              en 2024
-            </span>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ChartContainer
-            config={{
-              total: {
-                label: "Total",
-                color: "hsl(var(--chart-3))",
-              },
-            }}
-          >
-            <BarChart
-              accessibilityLayer
-              margin={{
-                left: -4,
-                right: -4,
-              }}
-              data={actByMonth}
-            >
-              <Bar
-                dataKey="total"
-                fill="var(--color-total)"
-                radius={5}
-                fillOpacity={0.6}
-                activeBar={<Rectangle fillOpacity={0.8} />}
-              />
-              <XAxis
-                dataKey="date"
-                tickLine={false}
-                axisLine={false}
-                tickMargin={4}
-                tickFormatter={(value) => {
-                  return new Date(value).toLocaleDateString("en-US", {
-                    month: "short",
-                  });
-                }}
-              />
-                         <ChartTooltip
-                defaultIndex={2}
-                content={
-                  <ChartTooltipContent
-                    hideIndicator
-                    labelFormatter={(value) => {
-                      return new Date(value).toLocaleDateString("en-US", {
-                        day: "numeric",
-                        month: "long",
-                        year: "numeric",
-                      });
-                    }}
-                  />
-                }
-                cursor={false}
-              /> 
 
-              <ReferenceLine
-                y={1200}
-                stroke="hsl(var(--muted-foreground))"
-                strokeDasharray="3 3"
-                strokeWidth={1}
-              >
-                <Label
-                  position="insideBottomLeft"
-                  value="Moyenne par mois"
-                  offset={activites.length / actByMonth.length}
-                  fill="hsl(var(--foreground))"
-                />
-                <Label
-                  position="insideTopLeft"
-                  value={activites.length}
-                  className="text-lg"
-                  fill="hsl(var(--foreground))"
-                  offset={10}
-                  startOffset={100}
-                />
-              </ReferenceLine>
-            </BarChart>
-          </ChartContainer>
-        </CardContent>
-      </Card> */}
       <Card>
         <CardHeader>
-          <CardDescription>January - Décembre 2024</CardDescription>
+          <CardDescription>Activtes / Mois en 2024</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-1">
           <ChartContainer config={chartConfig}>
             <BarChart
               accessibilityLayer
@@ -284,7 +197,7 @@ const Dashboard = ({
               <XAxis
                 dataKey="date"
                 tickLine={false}
-                tickMargin={10}
+                tickMargin={8}
                 axisLine={false}
                 tickFormatter={(value) => {
                   return new Date(value).toLocaleDateString("fr-FR", {

@@ -53,14 +53,18 @@ const DashboardPage = async () => {
     }
 
   //actByMonth
-  const actByMonth = act2?.map((ac) => ({
+  const actByMonthPrev = act2?.map((ac) => ({
     //date: ac.date.substring(3),
     date: ac.date.split("-").reverse().join("-").substring(0, 8).concat("-01"),
     total: ac.total,
   }));
 
+  const actByMonth = actByMonthPrev.sort(
+    (a: any, b: any) => Date.parse(a.date) - Date.parse(b.date)
+  );
+
   //console.log("ACT2: ", act2);
-  //console.log("actByMonth: ", actByMonth);
+  // console.log("actByMonth:", actByMonth);
 
   return (
     <GlobalLayout

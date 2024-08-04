@@ -95,8 +95,8 @@ const ActiviteForm = ({
 
   const procesForm = async (values: z.infer<typeof ActiviteSchema>) => {
     setLoading(true);
-    //console.log("Value: ", values);
-    //console.log("usr: ", member);
+    console.log("Value: ", values);
+    console.log("activite: ", activite);
 
     // const result = await registerUser(values);
     let res;
