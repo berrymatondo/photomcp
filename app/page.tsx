@@ -54,21 +54,21 @@ export default function Home() {
               <Image
                 alt="co"
                 src={vero1}
-                className="object-cover z-5 bg-transparent border-2 border-neutral-500 rounded-full"
+                className="bg-blue-300/40 object-cover z-5 border-2 border-neutral-500 rounded-full"
               />
             </div>
             <div className="h-32 w-16 m-2  bg-transparent overflow-hidden">
               <Image
                 alt="co"
                 src={gp}
-                className="mt-8 object-cover z-5 bg-transparent border-2 border-neutral-500 rounded-full"
+                className="mt-8 object-cover z-5 bg-gray-200/40 border-2 border-neutral-500 rounded-full"
               />
             </div>
             <div className="h-32 w-16 m-2  bg-transparent overflow-hidden">
               <Image
                 alt="co"
                 src={djou}
-                className="object-cover z-5 bg-transparent border-2 border-neutral-500 rounded-full"
+                className="object-cover z-5 bg-yellow-200/40 border-2 border-neutral-500 rounded-full"
               />
             </div>
           </div>
@@ -77,21 +77,21 @@ export default function Home() {
               <Image
                 alt="co"
                 src={magda}
-                className="object-cover z-5 bg-transparent border-2 border-neutral-500 rounded-full"
+                className="object-cover z-5 bg-purple-200/40 border-2 border-neutral-500 rounded-full"
               />
             </div>
             <div className="mt-8 h-32 w-16 m-2  bg-transparent overflow-hidden">
               <Image
                 alt="co"
                 src={quenan}
-                className="object-cover z-5 bg-transparent border-2 border-neutral-500 rounded-full"
+                className="object-cover z-5 bg-teal-300/40 border-2 border-neutral-500 rounded-full"
               />
             </div>
             <div className="h-32 w-16 m-2  bg-transparent overflow-hidden">
               <Image
                 alt="co"
                 src={temis}
-                className="object-cover z-5 bg-transparent border-2 border-neutral-500 rounded-full"
+                className="object-cover z-5 bg-sky-200/40 border-2 border-neutral-500 rounded-full"
               />
             </div>
           </div>
