@@ -43,6 +43,7 @@ import {
   getActivite,
   updateActivite,
 } from "@/lib/_activiteActions";
+import { Badge } from "../ui/badge";
 
 type ActiviteFormProps = {
   openDialog: boolean;
@@ -95,8 +96,8 @@ const ActiviteForm = ({
 
   const procesForm = async (values: z.infer<typeof ActiviteSchema>) => {
     setLoading(true);
-    console.log("Value: ", values);
-    console.log("activite: ", activite);
+    //console.log("Value: ", values);
+    //console.log("activite: ", activite);
 
     // const result = await registerUser(values);
     let res;
@@ -136,9 +137,19 @@ const ActiviteForm = ({
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           {type == "M" ? (
-            <MdEdit className="text-sky-600" size={20} />
+            <>
+              <MdEdit className="md:hidden text-sky-600" size={20} />
+              <Badge className="max-md:hidden bg-sky-600 hover:bg-sky-400 hover:cursor-pointer">
+                Editer
+              </Badge>
+            </>
           ) : (
-            <Button className="w-full bg-sky-600">{action}</Button>
+            <>
+              <Button className="md:hidden w-full bg-sky-600">{action}</Button>
+              <Badge className="max-md:hidden bg-sky-600 hover:bg-sky-400 hover:cursor-pointer">
+                Editer
+              </Badge>
+            </>
           )}
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">

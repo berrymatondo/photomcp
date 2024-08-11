@@ -43,7 +43,7 @@ export default function Home() {
       </div>
 
       <div className=" flex justify-end w-full absolute z-10 top-1/2 right-0">
-        <p className="text-yellow-400 rounded-l-full bg-white/30 w-1/2  p-2  text-right">
+        <p className="text-white rounded-l-full bg-white/30 w-1/2  p-2  text-right">
           <span>{"Espace équipe photo"}</span>
           <span className="block text-sky-500 font-semibold">{"MCP"}</span>
         </p>

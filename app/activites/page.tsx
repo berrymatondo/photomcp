@@ -165,7 +165,12 @@ const ActivitesPage = async ({
                         </div>
                       ))
                     ) : (
-                      <span className="block italic">???</span>
+                      <>
+                        <span className="md:hidden block italic">???</span>
+                        <span className="max-md:hidden block italic">
+                          <Badge className="bg-slate-500">A planifier</Badge>
+                        </span>
+                      </>
                     )}
                   </Link>
                   {/*                   <ServiceTeam

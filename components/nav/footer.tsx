@@ -28,7 +28,7 @@ const tabLinks = [
   },
   {
     id: 4,
-    link: "/process",
+    link: "/ft",
     title: "Procédures",
     logo: <FiBookOpen size={35} />,
   },

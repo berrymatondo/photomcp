@@ -65,11 +65,11 @@ const Dashboard = ({
   activites,
   actByMonth,
 }: DashboardProps) => {
-  console.log("actByMonth:", actByMonth);
+  //console.log("actByMonth:", actByMonth);
 
   return (
-    <div className="flex gap-2 max-md:flex-col">
-      <Card className="max-w-xs" x-chunk="charts-01-chunk-4">
+    <div className="flex gap-2 max-md:flex-col md:justify-start">
+      <Card className="lg:w-1/3 " x-chunk="charts-01-chunk-4">
         <CardContent className="flex gap-4 p-4 pb-2">
           <ChartContainer
             config={{
@@ -180,7 +180,7 @@ const Dashboard = ({
         </CardFooter>
       </Card>
 
-      <Card>
+      <Card className=" lg:w-1/3">
         <CardHeader>
           <CardDescription>Activtes / Mois en 2024</CardDescription>
         </CardHeader>

@@ -42,8 +42,8 @@ const TeamPage = async ({
   // const usrCount = await prisma.member.count();
 
   const members = await prisma.member.findMany({
-    take: take,
-    skip: skip,
+    //take: take,
+    //skip: skip,
     /*     include: {
       department: true,
     }, */

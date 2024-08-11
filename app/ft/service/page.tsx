@@ -39,75 +39,85 @@ import {
 } from "@/components/ui/breadcrumb";
 import GlobalLayout from "@/components/all/globalLayout";
 import {
-  MdEdit,
+  MdCamera,
   MdElectricBolt,
+  MdHandshake,
   MdLight,
   MdQuestionMark,
-  MdSort,
   MdStop,
-  MdUpload,
+  MdWork,
 } from "react-icons/md";
 
 const notifications = [
   {
-    title: "Connexion au compte des photographes",
+    title: "Allumer les projecteurs de la chair (intérieur et extérieur)",
     description:
-      "Se connection sur un des PC avec l'utilisateur -photostar- et le mot de pass -Nikon2017- ",
+      "Ces projecteurs sont des lumières froides. Elles peuvent preuvent prendre 2 à 5 minutes pour s'allumer",
   },
   {
-    title: "Copie des photos sur le disque d'un PC local",
+    title: "Allumer les projecteurs du rail et du mur",
     description:
-      "Créer un dossier un ordinateur connecté au compte des photographes et copier vos photos de la carte SD à cet ordinateur",
+      "Tous les projecteurs au dessus des chantres, des musiciens ainsi que ceux du rail du dessus de la caméra principale ",
   },
   {
-    title: "Sélection des photos",
+    title: "Allumer les projecteurs du sol",
     description:
-      "Supprimer les photos inexploitables, les doublons ainsi que celles qui se ressemblent fortement.",
+      "Il y au totale 8 projecteurs au sol. Il faut mettre sous tension la projecteur à droite de l'orateur, ce celui-ci qui alimente les projecteurs au sol derrière les chanrtes et les musiciens",
   },
 ];
 
 const boitier = [
   {
-    title: "Via l'outil local",
+    title: "Mettre le boitier sous tension",
     description:
-      "Vous pouvez utiliser le programme installé par défaut sur le PC pour retoucher les photos",
+      "Ceci se fait via l'intérieur de la rallonge paratgé avec la table de son",
   },
   {
-    title: "ADOBE Lightroom",
+    title: "Débrancher le câble mini-usb du boitier",
     description:
-      "Se connecter au cloud d'Adobe sur le compte du MCP et utiliser le logiciel Lightroom online",
+      "Pour utiliser le boitier il faut s'assurer que le boiter n'est pas rélié à l'ordinateur via le mini cable usb",
   },
   {
-    title: "Via l'appreil photo",
-    description:
-      "Les appareils photos, exemple le Nikon D750, offrent également des programmes de retouche basique",
+    title:
+      "Choisir le type d'événement et appuyer sur les différents boutons du boitier en fonction de la configuration",
+    description: "Différentes configurations:",
   },
 ];
 
 const arrets = [
   {
-    title: "Connxion au drive",
+    title: "Appuyer sur le bouton du boitier qui est allumé",
     description:
-      "Se connecter au drive du MCP(mcp.iccbxl@gmail.com) + mot de passe",
+      "Ceci devra éteindre tous les boutons du boitier ainsi que les projecteurs de l'auditorium",
     image: chaire,
   },
   {
-    title: "Dépôt sur le dossier",
-    description:
-      "Il suffit de faire un glisser-déposer des photos triés et retouchées dans le bon dossier",
+    title: "Eteindre les projecteurs de la chair (intérieur et extérieur)",
+    description: "-",
     image: chaire,
+  },
+  {
+    title: "Eteindre les projecteurs du rail et du mur",
+    description: "-",
+    image: proj1,
+  },
+  {
+    title: "Eteindre les projecteurs du sol",
+    description:
+      "Ceci se fait manuellement derrière le projecteur au sol situé à droite de l'orateur",
+    image: proj1,
   },
 ];
 
-const DrivePage = () => {
+const ServicePage = () => {
   return (
     <GlobalLayout
-      title="Dépôt des photos"
-      desc="Ceci est un tutorial sur le tri et la sélection des photos"
+      title="Lumière via le boitier"
+      desc="Ceci est un tutorial sur l'utilisation de la lumière de l'auditorium principal"
       add={{
-        bred: <CustomBreadcrumb name="Dépôt des photos" />,
+        bred: <CustomBreadcrumb name="Lumière via boitier" />,
       }}
-      logo={<MdUpload className="text-yellow-600" />}
+      logo={<MdCamera className="text-purple-600" />}
       back={true}
     >
       <div className="grid gap-4">
@@ -117,7 +127,7 @@ const DrivePage = () => {
               <AccordionTrigger>
                 {" "}
                 <p className="text-xl flex items-center gap-2 font-medium text-sky-600 py-2">
-                  <MdSort className="text-green-600" /> Tri des photos
+                  <MdHandshake className="text-green-600" /> La prière
                 </p>
               </AccordionTrigger>
               <AccordionContent>
@@ -145,7 +155,8 @@ const DrivePage = () => {
               <AccordionTrigger>
                 {" "}
                 <p className="text-xl flex items-center gap-2 font-medium text-sky-600 py-2">
-                  <MdEdit className="text-yellow-600" /> Retouche des photos
+                  <MdQuestionMark className="text-yellow-600" /> Comment
+                  utiliser le boitier
                 </p>
               </AccordionTrigger>
               <AccordionContent>
@@ -166,6 +177,10 @@ const DrivePage = () => {
                       </div>
                     </div>
                   ))}
+
+                  <div className="container">
+                    <CO />
+                  </div>
                 </div>
               </AccordionContent>
             </AccordionItem>
@@ -173,8 +188,8 @@ const DrivePage = () => {
               <AccordionTrigger>
                 {" "}
                 <p className="text-xl flex items-center gap-2 font-medium text-sky-600 py-2">
-                  <MdUpload className="text-purple-600" />
-                  {"Chargement sur le drive"}
+                  <MdStop className="text-red-600" />
+                  {"Arrêt total"}
                 </p>
               </AccordionTrigger>
               <AccordionContent className=" ml-0">
@@ -182,16 +197,34 @@ const DrivePage = () => {
                   {arrets.map((notification, index) => (
                     <div
                       key={index}
-                      className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
+                      className="grid grid-cols-[80px_1fr] gap-2 py-4"
                     >
-                      <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
-                      <div className="space-y-1">
-                        <p className="text-sm font-medium leading-none">
-                          {notification.title}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          {notification.description}
-                        </p>
+                      {/*                         <div className="relative w-16 h-16 overflow-hidden">
+                          <Image
+                            alt="co"
+                            src={chaire}
+                            placeholder="blur"
+                            //  quality={100}
+                            fill
+                            //  sizes="100vw"
+                            className="object-cover z-10"
+                          />
+                        </div> */}
+                      <BIG img={notification.image} />
+                      <div
+                        key={index}
+                        className="mb-4 grid  items-start pd-2 last:mb-0 last:pb-0"
+                      >
+                        {/*                           <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
+                         */}{" "}
+                        <div className="space-y-1">
+                          <p className="text-sm font-medium leading-none">
+                            {notification.title}
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            {notification.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -200,15 +233,12 @@ const DrivePage = () => {
             </AccordionItem>
           </Accordion>
         </div>
-        <div className="pt-4 ">
-          <CO />
-        </div>
       </div>
     </GlobalLayout>
   );
 };
 
-export default DrivePage;
+export default ServicePage;
 
 const CO = () => {
   return (
@@ -218,26 +248,12 @@ const CO = () => {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[1200px] sm:max-h-[700px]">
         <DialogHeader>
-          <DialogTitle>{"Cas d'un culte ordinaire"}</DialogTitle>
-          <DialogDescription className="text-left flex flex-col gap-4">
-            <p>
-              Il faudrait créer le dossier du jour qui contiendra les
-              sous-dossiers: Culte 1, Culte 2, Validation et Vignette
-            </p>
-            <p>
-              <strong>Culte x:</strong> Contient un sous-dossier par photographe{" "}
-            </p>
-            <p>
-              <strong>Validation:</strong> Contient les photos sélectionnées qui
-              seront mises à disposition au pôle RS et autres{" "}
-            </p>
-            <p>
-              <strong>Vignette:</strong> Contient les photos qui seront
-              utilisées pour les vignettes Youtube principalement{" "}
-            </p>
-          </DialogDescription>
+          <DialogTitle>{"Configuration d'un culte ordinaire"}</DialogTitle>
+          {/*           <DialogDescription>
+            Make changes to your profile here. Click save when you're done.
+          </DialogDescription> */}
         </DialogHeader>
-        {/*         <div className="grid gap-4 py-4 overflow-hidden">
+        <div className="grid gap-4 py-4 overflow-hidden">
           <Image
             alt="co"
             src={co}
@@ -247,7 +263,7 @@ const CO = () => {
             //  sizes="100vw"
             className="object-cover z-10 rounded-lg"
           />
-        </div> */}
+        </div>
         {/*         <DialogFooter>
           <Button type="submit">Quitter</Button>
         </DialogFooter> */}

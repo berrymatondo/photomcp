@@ -29,6 +29,21 @@ import Image from "next/image";
 import co from "../../../public/co.png";
 import chaire from "../../../public/chair.jpeg";
 import proj1 from "../../../public/proj1.jpeg";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import GlobalLayout from "@/components/all/globalLayout";
+import {
+  MdElectricBolt,
+  MdLight,
+  MdQuestionMark,
+  MdStop,
+} from "react-icons/md";
 
 const notifications = [
   {
@@ -93,96 +108,96 @@ const arrets = [
 
 const LumierePage = () => {
   return (
-    <div className="max-md:mx-1 md:container py-24">
-      <Card className="">
-        <CardHeader>
-          <CardTitle className="uppercase">
-            {"La lumière via le boitier"}
-          </CardTitle>
-          <CardDescription>
-            {
-              "Ceci est un tutorial sur l'utilisation de la lumière de l'auditorium principal"
-            }
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="grid gap-4">
-          <div>
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="item-1">
-                <AccordionTrigger>
-                  {" "}
-                  <p className="text-xl font-medium text-sky-600 py-2">
-                    Mise sous tension
-                  </p>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div>
-                    {notifications.map((notification, index) => (
-                      <div
-                        key={index}
-                        className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
-                      >
-                        <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
-                        <div className="space-y-1">
-                          <p className="text-sm font-medium leading-none">
-                            {notification.title}
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            {notification.description}
-                          </p>
-                        </div>
+    <GlobalLayout
+      title="Lumière via le boitier"
+      desc="Ceci est un tutorial sur l'utilisation de la lumière de l'auditorium principal"
+      add={{
+        bred: <CustomBreadcrumb name="Lumière via boitier" />,
+      }}
+      logo={<MdLight className="text-yellow-600" />}
+      back={true}
+    >
+      <div className="grid gap-4">
+        <div>
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="item-1">
+              <AccordionTrigger>
+                {" "}
+                <p className="text-xl flex items-center gap-2 font-medium text-sky-600 py-2">
+                  <MdElectricBolt className="text-green-600" /> Mise sous
+                  tension
+                </p>
+              </AccordionTrigger>
+              <AccordionContent>
+                <div>
+                  {notifications.map((notification, index) => (
+                    <div
+                      key={index}
+                      className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
+                    >
+                      <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
+                      <div className="space-y-1">
+                        <p className="text-sm font-medium leading-none">
+                          {notification.title}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          {notification.description}
+                        </p>
                       </div>
-                    ))}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger>
-                  {" "}
-                  <p className="text-xl font-medium text-sky-600 py-2">
-                    Comment utiliser le boitier
-                  </p>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div>
-                    {boitier.map((notification, index) => (
-                      <div
-                        key={index}
-                        className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
-                      >
-                        <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
-                        <div className="space-y-1">
-                          <p className="text-sm font-medium leading-none">
-                            {notification.title}
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            {notification.description}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-
-                    <div className="container">
-                      <CO />
                     </div>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger>
+                {" "}
+                <p className="text-xl flex items-center gap-2 font-medium text-sky-600 py-2">
+                  <MdQuestionMark className="text-yellow-600" /> Comment
+                  utiliser le boitier
+                </p>
+              </AccordionTrigger>
+              <AccordionContent>
+                <div>
+                  {boitier.map((notification, index) => (
+                    <div
+                      key={index}
+                      className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
+                    >
+                      <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
+                      <div className="space-y-1">
+                        <p className="text-sm font-medium leading-none">
+                          {notification.title}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          {notification.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+
+                  <div className="container">
+                    <CO />
                   </div>
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3">
-                <AccordionTrigger>
-                  {" "}
-                  <p className="text-xl font-medium text-sky-600 py-2">
-                    {"Arrêt total"}
-                  </p>
-                </AccordionTrigger>
-                <AccordionContent className=" ml-0">
-                  <div>
-                    {arrets.map((notification, index) => (
-                      <div
-                        key={index}
-                        className="grid grid-cols-[80px_1fr] gap-2 py-4"
-                      >
-                        {/*                         <div className="relative w-16 h-16 overflow-hidden">
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger>
+                {" "}
+                <p className="text-xl flex items-center gap-2 font-medium text-sky-600 py-2">
+                  <MdStop className="text-red-600" />
+                  {"Arrêt total"}
+                </p>
+              </AccordionTrigger>
+              <AccordionContent className=" ml-0">
+                <div>
+                  {arrets.map((notification, index) => (
+                    <div
+                      key={index}
+                      className="grid grid-cols-[80px_1fr] gap-2 py-4"
+                    >
+                      {/*                         <div className="relative w-16 h-16 overflow-hidden">
                           <Image
                             alt="co"
                             src={chaire}
@@ -193,35 +208,31 @@ const LumierePage = () => {
                             className="object-cover z-10"
                           />
                         </div> */}
-                        <BIG img={notification.image} />
-                        <div
-                          key={index}
-                          className="mb-4 grid  items-start pd-2 last:mb-0 last:pb-0"
-                        >
-                          {/*                           <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
-                           */}{" "}
-                          <div className="space-y-1">
-                            <p className="text-sm font-medium leading-none">
-                              {notification.title}
-                            </p>
-                            <p className="text-sm text-muted-foreground">
-                              {notification.description}
-                            </p>
-                          </div>
+                      <BIG img={notification.image} />
+                      <div
+                        key={index}
+                        className="mb-4 grid  items-start pd-2 last:mb-0 last:pb-0"
+                      >
+                        {/*                           <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
+                         */}{" "}
+                        <div className="space-y-1">
+                          <p className="text-sm font-medium leading-none">
+                            {notification.title}
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            {notification.description}
+                          </p>
                         </div>
                       </div>
-                    ))}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-        </CardContent>
-        {/*         <CardFooter>
-          <Button className="w-full">Mark all as read</Button>
-        </CardFooter> */}
-      </Card>
-    </div>
+                    </div>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      </div>
+    </GlobalLayout>
   );
 };
 
@@ -305,5 +316,25 @@ const BIG = ({ img }: BigProps) => {
           </DialogFooter> */}
       </DialogContent>
     </Dialog>
+  );
+};
+
+const CustomBreadcrumb = ({ name }: { name: string }) => {
+  return (
+    <Breadcrumb className=" mb-4">
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Accueil</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/ft">Fiches tech</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage className="font-semibold">{name}</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
   );
 };

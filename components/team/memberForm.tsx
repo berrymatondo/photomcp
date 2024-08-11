@@ -40,6 +40,7 @@ import { toast } from "sonner";
 import { createMember, getMember, updateMember } from "@/lib/_memberActions";
 import { MemberStatuses } from "@prisma/client";
 import { Textarea } from "../ui/textarea";
+import { Badge } from "../ui/badge";
 
 type MemberFormProps = {
   openDialog: boolean;
@@ -136,13 +137,26 @@ const MemberForm = ({
   return (
     <div>
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
+        <DialogTrigger className="md:hidden" asChild>
           {type == "M" ? (
             <MdEdit className="text-sky-600" size={20} />
           ) : (
             <Button className="w-full bg-sky-600">{action}</Button>
           )}
         </DialogTrigger>
+
+        <DialogTrigger className="max-md:hidden" asChild>
+          {type == "M" ? (
+            <Badge className="p-2 max-md:hidden bg-sky-600 hover:bg-sky-400  hover:cursor-pointer">
+              {action}
+            </Badge>
+          ) : (
+            <Badge className="max-md:hidden bg-sky-600 hover:bg-sky-400  hover:cursor-pointer">
+              {action}
+            </Badge>
+          )}
+        </DialogTrigger>
+
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>{action}</DialogTitle>

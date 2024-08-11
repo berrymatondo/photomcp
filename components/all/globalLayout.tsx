@@ -17,6 +17,7 @@ type GlobalLayoutProps = {
   desc: string;
   add?: any;
   back?: boolean;
+  logo?: any;
 
   children: React.ReactNode;
 };
@@ -26,18 +27,22 @@ const GlobalLayout = ({
   desc,
   add,
   back,
+  logo,
   children,
 }: GlobalLayoutProps) => {
   const router = useRouter();
   return (
-    <div className="flex my-2 px-2">
+    <div className="flex my-2 px-2 md:container">
       <Card className="w-full">
         <CardHeader>
           <CardTitle className="text-sky-600">
-            <p className="flex items-center justify-between">
-              {title}{" "}
+            <div className="flex items-center justify-between">
+              <p className="flex items-center gap-2">
+                {logo}
+                {title}{" "}
+              </p>
               {back ? <MdArrowBack onClick={() => router.back()} /> : ""}
-            </p>
+            </div>
           </CardTitle>
           <CardDescription>{desc}</CardDescription>
         </CardHeader>

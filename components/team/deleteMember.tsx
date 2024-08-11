@@ -14,6 +14,7 @@ import { deleteMember } from "@/lib/_memberActions";
 import { useState } from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { toast } from "sonner";
+import { Badge } from "../ui/badge";
 
 type MemberFormProps = {
   openDialog: boolean;
@@ -32,8 +33,13 @@ const DeleteMember = ({
   return (
     <div>
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
+        <DialogTrigger className="md:hidden" asChild>
           <MdDelete className="text-red-600" size={20} />
+        </DialogTrigger>
+        <DialogTrigger className="max-md:hidden" asChild>
+          <Badge className="max-md:hidden bg-transparent hover:bg-slate-100 text-red-600 hover:cursor-pointer">
+            Supprimer
+          </Badge>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
