@@ -180,11 +180,13 @@ const Dashboard = ({
         </CardFooter>
       </Card>
 
-      <Card className=" lg:w-1/3">
+      <Card className="border-none px-0 lg:w-1/3">
         <CardHeader>
-          <CardDescription>Activtes / Mois en 2024</CardDescription>
+          <CardDescription className="font-semibold">
+            {"Activtés / Mois en 2024"}
+          </CardDescription>
         </CardHeader>
-        <CardContent className="p-1">
+        <CardContent className="py-1 px-0">
           <ChartContainer config={chartConfig}>
             <BarChart
               accessibilityLayer

@@ -33,8 +33,8 @@ const GlobalLayout = ({
   const router = useRouter();
   return (
     <div className="flex my-2 px-2 md:container">
-      <Card className="w-full">
-        <CardHeader>
+      <Card className="w-full border-none">
+        <CardHeader className="py-4 px-2">
           <CardTitle className="text-sky-600">
             <div className="flex items-center justify-between">
               <p className="flex items-center gap-2">
@@ -46,7 +46,7 @@ const GlobalLayout = ({
           </CardTitle>
           <CardDescription>{desc}</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-2">
           {add && add.bred}
           {add && add.compo}
 

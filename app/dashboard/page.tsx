@@ -69,7 +69,7 @@ const DashboardPage = async () => {
   return (
     <GlobalLayout
       title="Equipe Photo"
-      desc="Liste des membres actifs de l'équipe photo du MCP"
+      desc="L'équipe photo en quelques chiffres"
       add={{
         name: "Dashboard",
 

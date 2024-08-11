@@ -9,7 +9,7 @@ const Header = () => {
   const pathname = headersList.get("x-pathname");
 
   return (
-    <div className="sticky top-0  bg-sky-950 flex justify-between items-center p-4 pl-0 m-1 rounded-lg">
+    <div className="sticky top-0  bg-sky-950 flex justify-between items-center p-4 pl-0 rounded-b-lg">
       <div className="flex items-center gap-2 bg-sky-600 text-white p-2 rounded-r-full">
         <MdLinkedCamera size={30} className="" />
         <Link href="/" className="font-medium">
