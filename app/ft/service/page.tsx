@@ -43,68 +43,62 @@ import {
   MdElectricBolt,
   MdHandshake,
   MdLight,
+  MdPinEnd,
   MdQuestionMark,
   MdStop,
   MdWork,
 } from "react-icons/md";
+import { FaPrayingHands } from "react-icons/fa";
 
 const notifications = [
   {
-    title: "Allumer les projecteurs de la chair (intérieur et extérieur)",
+    title: "Actions de grâces",
     description:
-      "Ces projecteurs sont des lumières froides. Elles peuvent preuvent prendre 2 à 5 minutes pour s'allumer",
+      "Rendre des actions de grâce au Seigneur pour le souffle de vie et pour le service qui va commencer",
   },
   {
-    title: "Allumer les projecteurs du rail et du mur",
+    title: "Laisser la place au Saint-Esprit",
     description:
-      "Tous les projecteurs au dessus des chantres, des musiciens ainsi que ceux du rail du dessus de la caméra principale ",
+      "Le service est avant tou spirituel, demander au Saint-Esprit de nous remplir, nous guider et nous revêtir de puissance et d'onction afin de rendre un service qui lui soit agréable",
   },
   {
-    title: "Allumer les projecteurs du sol",
-    description:
-      "Il y au totale 8 projecteurs au sol. Il faut mettre sous tension la projecteur à droite de l'orateur, ce celui-ci qui alimente les projecteurs au sol derrière les chanrtes et les musiciens",
+    title: "Sujet libre",
+    description: "Laisser vous conduire par le Saint-Esprit ...",
   },
 ];
 
 const boitier = [
   {
-    title: "Mettre le boitier sous tension",
+    title: "Vérification du matériel",
     description:
-      "Ceci se fait via l'intérieur de la rallonge paratgé avec la table de son",
+      "Vérifier que le patériel pris (appareil photo, batterie et carte SD) est bien fonctionnel",
   },
   {
-    title: "Débrancher le câble mini-usb du boitier",
+    title: "Batterie en charge",
     description:
-      "Pour utiliser le boitier il faut s'assurer que le boiter n'est pas rélié à l'ordinateur via le mini cable usb",
+      "Si toutes les betteries ne sont pas utilisées, garder toute (au moins) une en charge",
   },
   {
-    title:
-      "Choisir le type d'événement et appuyer sur les différents boutons du boitier en fonction de la configuration",
-    description: "Différentes configurations:",
+    title: "Dispatching",
+    description:
+      "Faire le dispatching de l'équipe: photographes et lumière. S'encourager mutuellement, être complémentaire et assister les nouveaux qui ont rejoints l'équipe",
   },
 ];
 
 const arrets = [
   {
-    title: "Appuyer sur le bouton du boitier qui est allumé",
+    title: "Vérification du matériel",
     description:
-      "Ceci devra éteindre tous les boutons du boitier ainsi que les projecteurs de l'auditorium",
-    image: chaire,
+      "Vérifier que le patériel pris (appareil photo, batterie et carte SD) est bien fonctionnel",
   },
   {
-    title: "Eteindre les projecteurs de la chair (intérieur et extérieur)",
+    title: "Ranger correctement le matériel",
     description: "-",
     image: chaire,
   },
   {
-    title: "Eteindre les projecteurs du rail et du mur",
+    title: "Eteindre la lumière et l'airCo en sortant du bureau",
     description: "-",
-    image: proj1,
-  },
-  {
-    title: "Eteindre les projecteurs du sol",
-    description:
-      "Ceci se fait manuellement derrière le projecteur au sol situé à droite de l'orateur",
     image: proj1,
   },
 ];
@@ -112,10 +106,10 @@ const arrets = [
 const ServicePage = () => {
   return (
     <GlobalLayout
-      title="Lumière via le boitier"
-      desc="Ceci est un tutorial sur l'utilisation de la lumière de l'auditorium principal"
+      title="Prise de service"
+      desc="Voici quelques lignes directrices pour le service à la photographie "
       add={{
-        bred: <CustomBreadcrumb name="Lumière via boitier" />,
+        bred: <CustomBreadcrumb name="Prise de service" />,
       }}
       logo={<MdCamera className="text-purple-600" />}
       back={true}
@@ -127,7 +121,7 @@ const ServicePage = () => {
               <AccordionTrigger>
                 {" "}
                 <p className="text-xl flex items-center gap-2 font-medium text-sky-600 py-2">
-                  <MdHandshake className="text-green-600" /> La prière
+                  <FaPrayingHands className="text-green-600" /> La prière
                 </p>
               </AccordionTrigger>
               <AccordionContent>
@@ -155,8 +149,7 @@ const ServicePage = () => {
               <AccordionTrigger>
                 {" "}
                 <p className="text-xl flex items-center gap-2 font-medium text-sky-600 py-2">
-                  <MdQuestionMark className="text-yellow-600" /> Comment
-                  utiliser le boitier
+                  <MdWork className="text-yellow-600" /> Entrée en service
                 </p>
               </AccordionTrigger>
               <AccordionContent>
@@ -178,9 +171,9 @@ const ServicePage = () => {
                     </div>
                   ))}
 
-                  <div className="container">
+                  {/*                   <div className="container">
                     <CO />
-                  </div>
+                  </div> */}
                 </div>
               </AccordionContent>
             </AccordionItem>
@@ -188,8 +181,8 @@ const ServicePage = () => {
               <AccordionTrigger>
                 {" "}
                 <p className="text-xl flex items-center gap-2 font-medium text-sky-600 py-2">
-                  <MdStop className="text-red-600" />
-                  {"Arrêt total"}
+                  <MdPinEnd className="text-red-600" />
+                  {"Fin du service"}
                 </p>
               </AccordionTrigger>
               <AccordionContent className=" ml-0">
@@ -197,37 +190,23 @@ const ServicePage = () => {
                   {arrets.map((notification, index) => (
                     <div
                       key={index}
-                      className="grid grid-cols-[80px_1fr] gap-2 py-4"
+                      className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
                     >
-                      {/*                         <div className="relative w-16 h-16 overflow-hidden">
-                          <Image
-                            alt="co"
-                            src={chaire}
-                            placeholder="blur"
-                            //  quality={100}
-                            fill
-                            //  sizes="100vw"
-                            className="object-cover z-10"
-                          />
-                        </div> */}
-                      <BIG img={notification.image} />
-                      <div
-                        key={index}
-                        className="mb-4 grid  items-start pd-2 last:mb-0 last:pb-0"
-                      >
-                        {/*                           <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
-                         */}{" "}
-                        <div className="space-y-1">
-                          <p className="text-sm font-medium leading-none">
-                            {notification.title}
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            {notification.description}
-                          </p>
-                        </div>
+                      <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
+                      <div className="space-y-1">
+                        <p className="text-sm font-medium leading-none">
+                          {notification.title}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          {notification.description}
+                        </p>
                       </div>
                     </div>
                   ))}
+
+                  <div className="container">
+                    <CO />
+                  </div>
                 </div>
               </AccordionContent>
             </AccordionItem>

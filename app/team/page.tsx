@@ -109,7 +109,10 @@ const TeamPage = async ({
               }
             >
               <TableCell>
-                <span className="font-medium">{member.lastname} </span>
+                <div className="flex items-end gap-1">
+                  <span className="font-medium">{member.lastname} </span>
+                  {member.comments && <MdComment className="text-teal-600" />}
+                </div>
                 {member.firstname}
               </TableCell>
               <TableCell className="">{member.mobile}</TableCell>
@@ -127,7 +130,8 @@ const TeamPage = async ({
                   type="M"
                   member={member}
                 />
-                {member.comments && <MdComment />}
+                {/*                 {member.comments && <MdComment />}
+                 */}{" "}
               </TableCell>
             </TableRow>
           ))}

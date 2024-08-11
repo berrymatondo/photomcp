@@ -135,8 +135,25 @@ const ActiviteForm = ({
   return (
     <div>
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
+        <DialogTrigger className="md:hidden" asChild>
           {type == "M" ? (
+            <MdEdit className="text-sky-600" size={20} />
+          ) : (
+            <Button className="w-full bg-sky-600">{action}</Button>
+          )}
+        </DialogTrigger>
+
+        <DialogTrigger className="max-md:hidden" asChild>
+          {type == "M" ? (
+            <Badge className="p-2 max-md:hidden bg-sky-600 hover:bg-sky-400  hover:cursor-pointer">
+              {action}
+            </Badge>
+          ) : (
+            <Badge className="max-md:hidden bg-sky-600 hover:bg-sky-400  hover:cursor-pointer">
+              {action}
+            </Badge>
+          )}
+          {/*           {type == "M" ? (
             <>
               <MdEdit className="md:hidden text-sky-600" size={20} />
               <Badge className="max-md:hidden bg-sky-600 hover:bg-sky-400 hover:cursor-pointer">
@@ -150,7 +167,7 @@ const ActiviteForm = ({
                 Editer
               </Badge>
             </>
-          )}
+          )} */}
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
