@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import vero from "../public/ggbb.png";
+import djou from "../public/team/djoulia.png";
+import gp from "../public/team/gracep.png";
+import vero1 from "../public/team/vero.png";
+import magda from "../public/team/magda.png";
+import quenan from "../public/team/quenan.png";
+import temis from "../public/team/temis.png";
 
 import { MdEvent, MdHome, MdLinkedCamera, MdPeople } from "react-icons/md";
 
@@ -41,7 +47,56 @@ export default function Home() {
           Ministère de la Communication et de la production
         </p> */}
       </div>
-
+      <div className=" flex justify-end w-full absolute z-10 top-0 right-0">
+        <div className="flex flex-col  w-full">
+          <div className="flex ">
+            <div className="h-32 w-16 m-2  bg-transparent overflow-hidden">
+              <Image
+                alt="co"
+                src={vero1}
+                className="object-cover z-5 bg-transparent border-2 border-neutral-500 rounded-full"
+              />
+            </div>
+            <div className="h-32 w-16 m-2  bg-transparent overflow-hidden">
+              <Image
+                alt="co"
+                src={gp}
+                className="mt-8 object-cover z-5 bg-transparent border-2 border-neutral-500 rounded-full"
+              />
+            </div>
+            <div className="h-32 w-16 m-2  bg-transparent overflow-hidden">
+              <Image
+                alt="co"
+                src={djou}
+                className="object-cover z-5 bg-transparent border-2 border-neutral-500 rounded-full"
+              />
+            </div>
+          </div>
+          <div className="flex ">
+            <div className="h-32 w-16 m-2  bg-transparent overflow-hidden">
+              <Image
+                alt="co"
+                src={magda}
+                className="object-cover z-5 bg-transparent border-2 border-neutral-500 rounded-full"
+              />
+            </div>
+            <div className="mt-8 h-32 w-16 m-2  bg-transparent overflow-hidden">
+              <Image
+                alt="co"
+                src={quenan}
+                className="object-cover z-5 bg-transparent border-2 border-neutral-500 rounded-full"
+              />
+            </div>
+            <div className="h-32 w-16 m-2  bg-transparent overflow-hidden">
+              <Image
+                alt="co"
+                src={temis}
+                className="object-cover z-5 bg-transparent border-2 border-neutral-500 rounded-full"
+              />
+            </div>
+          </div>
+        </div>
+      </div>{" "}
       <div className=" flex justify-end w-full absolute z-10 top-1/2 right-0">
         <p className="text-white rounded-l-full bg-white/30 w-1/2  p-2  text-right">
           <span>{"Espace équipe photo"}</span>
