@@ -25,6 +25,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Member } from "@prisma/client";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const TeamPage = async ({
   searchParams,
@@ -88,55 +89,57 @@ const TeamPage = async ({
         bred: <CustomBreadcrumb name="Equipe" />,
       }}
     >
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="">Membre</TableHead>
-            <TableHead className="">Téléphone</TableHead>
-            <TableHead className="text-right"></TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {members.map((member: any) => (
-            <TableRow
-              key={member.id}
-              className={
-                member.status == "RETIRE"
-                  ? "text-red-600"
-                  : member.status == "INACTIF"
-                  ? `text-gray-400`
-                  : ""
-              }
-            >
-              <TableCell>
-                <div className="flex items-end gap-1">
-                  <span className="font-medium">{member.lastname} </span>
-                  {member.comments && <MdComment className="text-teal-600" />}
-                </div>
-                {member.firstname}
-              </TableCell>
-              <TableCell className="">{member.mobile}</TableCell>
-              <TableCell className="text-right flex items-center gap-6">
-                <DeleteMember
-                  action="Supprimer Membre"
-                  desc="Supprimer un membre de l'équipe photo."
-                  openDialog={false}
-                  member={member}
-                />
-                <MemberForm
-                  action="Editer Membre"
-                  desc="Editer un membre de l'équipe photo."
-                  openDialog={false}
-                  type="M"
-                  member={member}
-                />
-                {/*                 {member.comments && <MdComment />}
-                 */}{" "}
-              </TableCell>
+      <ScrollArea className="max-md:hidden h-[550px]">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="">Membre</TableHead>
+              <TableHead className="">Téléphone</TableHead>
+              <TableHead className="text-right"></TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {members.map((member: any) => (
+              <TableRow
+                key={member.id}
+                className={
+                  member.status == "RETIRE"
+                    ? "text-red-600"
+                    : member.status == "INACTIF"
+                    ? `text-gray-400`
+                    : ""
+                }
+              >
+                <TableCell>
+                  <div className="flex items-end gap-1">
+                    <span className="font-medium">{member.lastname} </span>
+                    {member.comments && <MdComment className="text-teal-600" />}
+                  </div>
+                  {member.firstname}
+                </TableCell>
+                <TableCell className="">{member.mobile}</TableCell>
+                <TableCell className="text-right flex items-center gap-6">
+                  <DeleteMember
+                    action="Supprimer Membre"
+                    desc="Supprimer un membre de l'équipe photo."
+                    openDialog={false}
+                    member={member}
+                  />
+                  <MemberForm
+                    action="Editer Membre"
+                    desc="Editer un membre de l'équipe photo."
+                    openDialog={false}
+                    type="M"
+                    member={member}
+                  />
+                  {/*                 {member.comments && <MdComment />}
+                   */}{" "}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </ScrollArea>
     </GlobalLayout>
   );
 };

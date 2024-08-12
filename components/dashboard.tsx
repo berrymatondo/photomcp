@@ -180,7 +180,7 @@ const Dashboard = ({
         </CardFooter>
       </Card>
 
-      <Card className="border-none px-0 lg:w-1/3">
+      <Card className="flex-1 max-md:border-none px-0 lg:w-1/3">
         <CardHeader>
           <CardDescription className="font-semibold">
             {"Activtés / Mois en 2024"}

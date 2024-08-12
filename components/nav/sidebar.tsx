@@ -34,7 +34,7 @@ const tabLinks = [
   },
 ];
 
-const Footer = () => {
+const Sidebar = () => {
   /*   const headersList = headers();
   const pathname = headersList.get("x-pathname"); */
   const pathname = usePathname();
@@ -44,13 +44,13 @@ const Footer = () => {
   //console.log("shortPath", shortPath);
 
   return (
-    <div className="md:hidden rounded-t-lg bg-sky-100 w-full sticky bottom-0  ">
-      <ul className="py-2 container flex items-center justify-between">
+    <div className="rounded-lg bg-neutral-100 w-full sticky bottom-0 mt-1 ">
+      <ul className="p-2  flex flex-col items-start justify-start">
         {tabLinks.map((el) => (
           <Link
             key={el.id}
             href={el.link}
-            className={`flex flex-col items-center ${
+            className={`flex items-center justify-start w-full mb-2 px-2 gap-2 hover:text-sky-600 ${
               el.link.split("/")[1] == shortPath
                 ? "text-sky-600"
                 : "text-gray-400"
@@ -58,10 +58,10 @@ const Footer = () => {
           >
             {el.logo}
             <p
-              className={`text-xs    ${
+              className={`text-md    ${
                 el.link.split("/")[1] == shortPath
                   ? "text-sky-700 font-bold"
-                  : "text-black font-normal"
+                  : "text-black font-normal hover:text-sky-600 "
               }`}
             >
               {el.title}
@@ -75,4 +75,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Sidebar;

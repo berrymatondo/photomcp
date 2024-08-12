@@ -145,15 +145,15 @@ const MemberForm = ({
           )}
         </DialogTrigger>
 
-        <DialogTrigger className="max-md:hidden" asChild>
+        <DialogTrigger className="max-md:hidden text-right" asChild>
           {type == "M" ? (
-            <Badge className="p-2 max-md:hidden bg-sky-600 hover:bg-sky-400  hover:cursor-pointer">
+            <Button className="p-2 max-md:hidden bg-sky-600 hover:bg-sky-400  hover:cursor-pointer">
               {action}
-            </Badge>
+            </Button>
           ) : (
-            <Badge className="max-md:hidden bg-sky-600 hover:bg-sky-400  hover:cursor-pointer">
+            <Button className="max-md:hidden bg-sky-600 hover:bg-sky-400  hover:cursor-pointer">
               {action}
-            </Badge>
+            </Button>
           )}
         </DialogTrigger>
 

@@ -3,6 +3,7 @@ import "./globals.css";
 import Footer from "@/components/nav/footer";
 import Header from "@/components/nav/header";
 import { Toaster } from "@/components/ui/sonner";
+import Sidebar from "@/components/nav/sidebar";
 
 const APP_NAME = "PMCP App";
 const APP_DEFAULT_TITLE = "Team Photo PWA App";
@@ -59,11 +60,17 @@ export default function RootLayout({
       <body
         suppressHydrationWarning={true}
         /*         className="bg-gray-100 min-h-[100dvh] grid grid-rows-[1fr_auto]"
-         */ className=" min-h-[100dvh] flex flex-col"
+         */ className=" min-h-[100dvh] flex flex-col md:container"
       >
         <Header />
 
-        <div className="flex-1 grid">{children}</div>
+        <div className="flex-1 max-md:grid md:flex  md:justify-between md:gap-2">
+          {" "}
+          <div className="max-md:hidden">
+            <Sidebar />
+          </div>
+          <div className="md:flex-1 grid">{children}</div>
+        </div>
         <Footer />
         <Toaster richColors />
       </body>
