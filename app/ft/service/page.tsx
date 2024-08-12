@@ -204,9 +204,9 @@ const ServicePage = () => {
                     </div>
                   ))}
 
-                  <div className="container">
+                  {/*                   <div className="container">
                     <CO />
-                  </div>
+                  </div> */}
                 </div>
               </AccordionContent>
             </AccordionItem>
