@@ -60,7 +60,7 @@ export default function RootLayout({
       <body
         suppressHydrationWarning={true}
         /*         className="bg-gray-100 min-h-[100dvh] grid grid-rows-[1fr_auto]"
-         */ className=" min-h-[100dvh] flex flex-col md:container"
+         */ className=" min-h-[100dvh] flex flex-col md:max-w-4xl mx-auto"
       >
         <Header />
 
