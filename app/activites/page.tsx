@@ -123,62 +123,60 @@ const ActivitesPage = async ({
         bred: <CustomBreadcrumb name="Activités" />,
       }}
     >
-      <ScrollArea className="max-md:hidden h-[550px]">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="">Activité</TableHead>
-              <TableHead className="">En service</TableHead>
-              <TableHead className="text-right"></TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {activites
-              .filter(
-                (d: any) =>
-                  +new Date()
-                    .toISOString()
-                    .substring(0, 10)
-                    .replace(/-/g, "") <=
-                  +d.date
-                    .split("-")
-                    .reverse()
-                    .join("-")
-                    .substring(0, 10)
-                    .replace(/-/g, "")
-              )
-              .sort(
-                (a: any, b: any) =>
-                  Date.parse(a.date.split("-").reverse().join("-")) -
-                  Date.parse(b.date.split("-").reverse().join("-"))
-              )
-              .map((activite) => (
-                <TableRow
-                  key={activite.id}
-                  className={activite.date < "TODAY" ? `text-gray-400` : ""}
-                >
-                  <TableCell>
-                    <p className="text-black font-medium">{activite.date} </p>
-                    <p className="">{activite.name} </p>
-                  </TableCell>
-                  <TableCell className="text-blue-800">
-                    <Link href={`/activites/${activite.id}/equipe`}>
-                      {activite?.members.length > 0 ? (
-                        activite?.members?.map((el: any) => (
-                          <div key={el.id} className="flex items-center p-0 ">
-                            <p className="text-xs">{el.member.firstname}</p>
-                          </div>
-                        ))
-                      ) : (
-                        <>
-                          <span className="md:hidden block italic">???</span>
-                          <span className="max-md:hidden block italic">
-                            <Badge className="bg-slate-500">A planifier</Badge>
-                          </span>
-                        </>
-                      )}
-                    </Link>
-                    {/*                   <ServiceTeam
+      {/*       <ScrollArea className="max-md:hidden h-[550px]">
+       */}{" "}
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="">Activité</TableHead>
+            <TableHead className="">En service</TableHead>
+            <TableHead className="text-right"></TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {activites
+            .filter(
+              (d: any) =>
+                +new Date().toISOString().substring(0, 10).replace(/-/g, "") <=
+                +d.date
+                  .split("-")
+                  .reverse()
+                  .join("-")
+                  .substring(0, 10)
+                  .replace(/-/g, "")
+            )
+            .sort(
+              (a: any, b: any) =>
+                Date.parse(a.date.split("-").reverse().join("-")) -
+                Date.parse(b.date.split("-").reverse().join("-"))
+            )
+            .map((activite) => (
+              <TableRow
+                key={activite.id}
+                className={activite.date < "TODAY" ? `text-gray-400` : ""}
+              >
+                <TableCell>
+                  <p className="text-black font-medium">{activite.date} </p>
+                  <p className="">{activite.name} </p>
+                </TableCell>
+                <TableCell className="text-blue-800">
+                  <Link href={`/activites/${activite.id}/equipe`}>
+                    {activite?.members.length > 0 ? (
+                      activite?.members?.map((el: any) => (
+                        <div key={el.id} className="flex items-center p-0 ">
+                          <p className="text-xs">{el.member.firstname}</p>
+                        </div>
+                      ))
+                    ) : (
+                      <>
+                        <span className="md:hidden block italic">???</span>
+                        <span className="max-md:hidden block italic">
+                          <Badge className="bg-slate-500">A planifier</Badge>
+                        </span>
+                      </>
+                    )}
+                  </Link>
+                  {/*                   <ServiceTeam
                     openDialog={false}
                     action="toto"
                     activite={activite}
@@ -186,28 +184,29 @@ const ActivitesPage = async ({
                     members={updMembers}
                     moa={moa}
                   /> */}
-                  </TableCell>
-                  <TableCell className="text-right flex items-center gap-6">
-                    <DeleteActivite
-                      action="Supprimer activité"
-                      desc="Supprimer une activité de l'équipe photo."
-                      openDialog={false}
-                      activite={activite}
-                    />
-                    <ActiviteForm
-                      action="Editer activité"
-                      desc="Editer une activté de l'équipe photo."
-                      openDialog={false}
-                      type="M"
-                      activite={activite}
-                    />
-                    {activite.comments && <MdComment />}
-                  </TableCell>
-                </TableRow>
-              ))}
-          </TableBody>
-        </Table>
-      </ScrollArea>
+                </TableCell>
+                <TableCell className="text-right flex items-center gap-6">
+                  <DeleteActivite
+                    action="Supprimer activité"
+                    desc="Supprimer une activité de l'équipe photo."
+                    openDialog={false}
+                    activite={activite}
+                  />
+                  <ActiviteForm
+                    action="Editer activité"
+                    desc="Editer une activté de l'équipe photo."
+                    openDialog={false}
+                    type="M"
+                    activite={activite}
+                  />
+                  {activite.comments && <MdComment />}
+                </TableCell>
+              </TableRow>
+            ))}
+        </TableBody>
+      </Table>
+      {/*       </ScrollArea>
+       */}{" "}
     </GlobalLayout>
   );
 };
